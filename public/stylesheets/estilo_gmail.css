@@ -1,0 +1,166 @@
+.email {
+	height: 70px;
+	width: 100%;
+	/*position: fixed;*/
+}
+
+.logo {
+	margin-top: 13px;
+	margin-left: 0px;
+	width: 0px;
+}
+
+.search-box {
+	background: #F1F1F1;
+	width: 636px;
+	height: 60px;
+}
+
+.input-group .form-control {
+	position:  center;
+	width: 636px;
+	height: 34px;
+	display: inline-block;
+	border-radius: 0px;
+	margin-top: 16px;
+	margin-bottom: 15px;
+}
+
+.input-group-addon{
+	border-radius: 0px;
+	margin-top: 19px;
+	margin-bottom: 15px;
+	width: 27px;
+	height: 27px;
+}
+/*.container{
+	outline:red 1px solid;
+}*/
+.basic-addon2{
+	height: 27px;
+	width: 27px;
+}
+
+#header{
+	background-color: #F1F1F1;
+  color: #404040;
+  font-size: 14px;
+}
+
+.user-profile{
+	width: 250px;
+	width: 60px;
+}
+
+
+.headerdos {
+	background-color: white;
+	height: 50px;
+	width: 100%;
+}
+
+.btn {
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: 20px;
+	color: red;
+	font-weight: normal;
+	line-height: 1.42857143;
+	text-align: left;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 0px solid transparent;
+	border-radius: 0px;
+	width: 120px;
+	height: 50px;
+}
+
+.btn-default:hover, .btn-default:focus {
+color: red;
+background-color: white;
+border-color: none;
+}
+
+.btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
+	color: red;
+	background-color: white;
+} 
+
+/*.btn-default:click {
+	border-color: none;
+}*/
+
+#compose .btn-danger {
+	color: white;
+	background: #DB4A38;
+	border-radius: 3px;
+	text-align: center;
+	width: 160px;	
+	height: 39px;
+	font-size: 16px;
+
+}
+#compose .btn-danger:hover, #compose .btn-danger:focus  {
+	color: white;
+	background: red;
+	border-radius: 3px;
+	text-align: center,
+}
+
+.nav-pills > li > a {
+	border-radius: 0px;
+	width: 160px;
+	height: 21px;
+}
+
+.nav > li > a {
+	padding: 0px 10px;
+	color: black;
+}
+
+.nav {
+	padding-left: 0px;
+	margin-top: 3px;
+	list-style: none;
+}
+
+#emails li {
+	padding: 10px;
+	margin: 5px 10px;
+	background-color: #F1F1F1;
+	width: 95%;
+}
+
+#blank-email {
+	width: 550px;
+	min-height: 300px;
+	background-color: #F1F1F1;
+	position: absolute;
+	bottom: 0px;
+	right: 80px;
+	border: 1px dotted #7B7B7B;
+	display: none;
+}
+
+.checked {
+	width: 10px;
+	height: 10px;
+	background-color: white;
+	float: left;
+	margin-top: 4px;
+	margin-right: 8px;
+	cursor: pointer;
+	border-spacing: 2px;
+	border-color: gray;
+}
+
+#emails {
+	list-style: none;
+}
+
+.starred{
+	color: white;
+	border-spacing: 2px;
+	border-color: gray;
+}

@@ -1,0 +1,156 @@
+<html ng-app="Twmail">
+  <head>
+    <title>Gmail</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/estilo_gmail.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </head>
+  <body ng-controller="mainController">
+    
+   <div id="header">
+    <div class="container">
+      <div class="email">
+        <div class="row">
+            
+            <div class="col-sm-2">
+              <div class="logo"> 
+                <img src="images/googlelogo.png">
+              </div>
+            </div>
+
+            <div class="col-sm-8 nopadding">
+              <div id="searchContainer">
+                <form>
+                  <input id="searchfield" name="searchfield" type="text" ng-model="searchFormData.text" />
+                  <img src="images/searchicon.png" id="searchsubmit" ng-click="searchTweet()">
+                </form>
+              </div>
+            </div>
+
+
+
+            <div class="col-sm-4">  
+              <div class="user-profile"></div>
+            </div>
+
+
+        </div><!-- ROW CLOSE -->
+      </div><!-- EMAIL CLOSE -->
+    </div><!-- CONTAINER CLOSE -->
+  </div><!-- HEADER CLOSE -->
+
+  
+<div class="container">
+    <div class="headerdos">
+      <div class="row">
+        <div class="col-sm-2">
+          
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Gmail <span class="caret"></span></button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Gmail</a></li>
+                <li><a href="#">Contactos</a></li>
+                <li><a href="#">Tareas</a></li>
+              </ul>
+            </div><!-- /btn-group -->
+          </div><!-- /input-group -->
+
+      </div>
+
+      </div><!-- ROW CLOSE -->
+    </div> <!-- HEADERDOS CLOSE -->
+  
+
+    <div class="row">
+      <div class="col-sm-2">
+            
+        <div id="sidebar">
+          <div id="compose">
+            <button type="button" class="btn btn-danger">Compose</button>
+          </div>
+          <div id="labels">
+            <ul id="main-labels" class="nav nav-pills nav-stacked">
+              <li id="inbox" role="presentation"><a href="#">Inbox</a></li>
+              <li role="presentation"><a href="#">Starred</a></li>
+              <li role="presentation"><a href="#">Sent mail</a></li>
+              <li role="presentation"><a href="#">Drafts</a></li>
+              <li role="presentation"><a href="#">Spam</a></li>
+            </ul>
+
+            <ul id="personal-labels">
+              <li>Friends</li>
+              <li>Professional</li>
+              <li>Events</li>
+              <li>Things</li>
+            </ul>
+          </div>
+
+        <div id="chat">
+          <div id="chat-profile"></div>
+          <ul id="recent-conversations">
+            <li>Charly Crews</li>
+            <li>Jack Gallagher</li>
+            <li>Richard Castle</li>
+            <li>Sheldon Cooper</li>
+          </ul>
+        </div>
+
+      </div>
+    
+    </div>  <!-- col-2 -->
+
+     <div class="col-sm-9">
+
+        <ul id="emails">
+          <li ng-repeat="tweet in tweets">
+            <div class="checked" data-checked="false" style="background-color: white;"></div>
+            <div class="starred" data-starred="false"><span class="glyphicon glyphicon-star"></div>
+            <div class="from">{{tweet.username}}</div>
+            <div class="subject">@{{tweet.screenname}}</div>
+            <div class="preview">{{tweet.text}}</div>
+          </li>
+        </ul>
+      </div>
+
+
+
+     </div> 
+  </div> <!-- row -->
+       <div id="footer">
+        <div id="usage">10GB 70% of 15GB</div>
+        <div id="brand">My Mail Company</div>
+        <div id="terms">Terms & privacy</div>
+        <div id="last-activity">Last account activity: 2 minutes ago</div>
+      </div>
+    </div>
+    
+    <div id="blank-email" style="display: none" >
+      <div id="blank-close"></div>
+      <form id="new_email">
+        <div><label for="blank-to">To</label><input id="blank-to" name="to" type="text" value=""></div>
+        <div><label for="blank-from">From</label><input id="blank-from" name="from" type="text" value=""></div>
+        <div><label for="blank-subject">Subject</label><input id="blank-subject" name="subject" type="text" value=""></div>
+        <div><textarea id="blank-content" name="content" rows="4" cols="50"></textarea></div>
+        <div id="blank-bottom">
+          <div id="send">send</div>
+          <div id="trash">trash</div>
+      </form>
+    </div>
+
+  </div>
+</div>
+      </div>
+
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="javascripts/gmail.js"></script>
+   <script src="controller.js"></script>
+
+</body>
+</html>
