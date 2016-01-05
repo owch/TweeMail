@@ -5,10 +5,10 @@ var util=require('util');
 var Tweet = require('../models/tweet');
 
 var twitter = new twit({
-  consumer_key: "CpA5oWclxPV3Etj3I9yF7ba9d",
-  consumer_secret: "XdIgLK8qPwX5CK7uMfFtWKNgaaOgKIZCLqBOgEEJ7MrusKOGOj",
-  access_token_key: "2516695249-nji7XetrhNOz86yRYvOtu4xgywcLvkfY8xMCXIk",
-  access_token_secret: "8WHdhlmq2WraCfp688n5JL8ZUvr8j9SgMWa7ZJOZxr9G7"
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_KEY,
+  access_token_secret: process.env.TWITTER_ACCESS_SECRET
 });
 
 
