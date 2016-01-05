@@ -6588,6 +6588,10 @@ button.close {
   margin:20px;
 }
 
+#loginContainer {
+  margin:20px;
+}
+
 /* Style the search input field. */
 #searchfield {
   float:left;
