@@ -3,14 +3,23 @@ var router = express.Router();
 var twit = require('twitter');
 var util=require('util');
 var Tweet = require('../models/tweet');
+var TwitterN = require("node-twitter-api");
 
 var twitter = new twit({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
   access_token_key: process.env.TWITTER_ACCESS_KEY,
-  access_token_secret: process.env.TWITTER_ACCESS_SECRET
+  access_token_secret: process.env.TWITTER_ACCESS_SECRET,
+  callback: "http://127.0.0.1:3000"
 });
 
+var twitterN = new TwitterN({
+  consumerKey: "CpA5oWclxPV3Etj3I9yF7ba9d",
+  consumerSecret: "XdIgLK8qPwX5CK7uMfFtWKNgaaOgKIZCLqBOgEEJ7MrusKOGOj",
+  callback: "http://127.0.0.1:3000"
+});
+
+var _requestSecret;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -74,6 +83,35 @@ router.get('/api/get/search', function(req, res) {
       res.json(tweet);
     });
   });
+
+router.get("/auth/request-token", function (req, res) {
+  twitterN.getRequestToken(function (err, requestToken, requestSecret) {
+    if (err)
+      res.status(500).send(err);
+    else {
+      _requestSecret = requestSecret;
+      res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
+    }
+  });
+});
+
+router.get("/auth/access-token", function(req, res) {
+  var requestToken = req.query.oauth_token,
+      verifier = req.query.oauth_verifier;
+
+  twitterN.getAccessToken(requestToken, _requestSecret, verifier, function(err, accessToken, accessSecret) {
+    if (err)
+      res.status(500).send(err);
+    else
+      twitterN.verifyCredentials(accessToken, accessSecret, function(err, user) {
+        if (err)
+          res.status(500).send(err);
+        else
+          res.send(user);
+      });
+  });
+});
+
 
 
 module.exports = router;
