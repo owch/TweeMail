@@ -84,6 +84,20 @@ router.get('/api/get/search', function(req, res) {
     });
   });
 
+//update status
+router.post('/api/post/tweet', function(req, res) {
+  twitter.post('statuses/update', {status: req.body.text}, function(error, tweet, response){
+    if (!error) {
+      console.log(tweet.text);
+      res.send(tweet);
+    }
+    else
+    {
+      res.status(500).send(error);
+    }
+  });
+});
+
 router.get("/auth/request-token", function (req, res) {
   twitterN.getRequestToken(function (err, requestToken, requestSecret) {
     if (err)
