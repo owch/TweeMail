@@ -9,12 +9,6 @@ $(function() {
         window.location.href = "auth/request-token";
     });
 });
-//$(function() {
-//    $.get("auth/access-token" + location.search).done(function(user) {
-//        console.log("got em");
-//    });
-//});
-
 
 function mainController($scope, $http) {
     $scope.searchFormData = {};
