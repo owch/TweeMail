@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var twit = require('twitter');
-var util=require('util');
 var Tweet = require('../models/tweet');
 var TwitterN = require("node-twitter-api");
+var token = require('../models/token');
 
 var twitter = new twit({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -16,15 +16,16 @@ var twitter = new twit({
 var twitterN = new TwitterN({
   consumerKey: "CpA5oWclxPV3Etj3I9yF7ba9d",
   consumerSecret: "XdIgLK8qPwX5CK7uMfFtWKNgaaOgKIZCLqBOgEEJ7MrusKOGOj",
-  callback: "http://127.0.0.1:3000"
+  callback: "http://127.0.0.1:3000/auth/access-token"
 });
 
 var _requestSecret;
+var _tempAccessToken;
+var _tempAccessSecret;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
-
 });
 
 // api ---------------------------------------------------------------------
@@ -86,16 +87,30 @@ router.get('/api/get/search', function(req, res) {
 
 //update status
 router.post('/api/post/tweet', function(req, res) {
-  twitter.post('statuses/update', {status: req.body.text}, function(error, tweet, response){
-    if (!error) {
-      console.log(tweet.text);
-      res.send(tweet);
-    }
-    else
-    {
-      res.status(500).send(error);
-    }
-  });
+  twitterN.statuses("update", {
+        status: "dankme"
+      },
+      _tempAccessToken,
+      _tempAccessSecret,
+      function(err, data) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          console.log("success tweet: " +data.text);
+        }
+      }
+  );
+});
+
+router.get("/is-user-auth", function (req, res) {
+  if(_tempAccessToken == undefined)
+  {
+    res.send('false');
+  }
+  else
+  {
+    res.send('true');
+  }
 });
 
 router.get("/auth/request-token", function (req, res) {
@@ -117,12 +132,28 @@ router.get("/auth/access-token", function(req, res) {
     if (err)
       res.status(500).send(err);
     else
-      twitterN.verifyCredentials(accessToken, accessSecret, function(err, user) {
-        if (err)
-          res.status(500).send(err);
-        else
-          res.send(user);
-      });
+    {
+      //twitterN.verifyCredentials(accessToken, accessSecret, function(error, user, response) {
+      //  if (err) {
+      //    res.status(500).send(err);
+      //  } else {
+      //    var date = new Date();
+      //
+      //    token.create({
+      //      access_token: accessToken,
+      //      access_secret: accessSecret,
+      //      screen_name: user.screen_name,
+      //      creation: date
+      //    });
+      //
+      //    res.send(user);
+      //  }
+      //});
+      _tempAccessToken = accessToken;
+      _tempAccessSecret = accessSecret;
+      console.log("here");
+      res.redirect("http://127.0.0.1:3000");
+    }
   });
 });
 
