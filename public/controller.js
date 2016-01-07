@@ -15,16 +15,39 @@ function mainController($scope, $http) {
     $scope.currentCity = {text:"Toronto"};
     $scope.testTweet = {text:"12345"};
     //
-    $http.post('/api/post/search', $scope.currentCity)
+
+    $http.get('/is-user-auth')
         .success(function(data) {
-            $scope.tweets = data;
+            if(data == 'false')
+            {
+                $http.post('/api/post/search', $scope.currentCity)
+                    .success(function(data) {
+                        $scope.tweets = data;
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+            }
+            else
+            {
+                $http.get('/user-home')
+                    .success(function(data) {
+                        $scope.tweets = data;
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+            }
         })
         .error(function(data) {
             console.log('Error: ' + data);
         });
 
+
     //send request to sever to search for tweet
     $scope.searchTweet = function() {
+
+
         $http.post('/api/post/search', $scope.searchFormData)
             .success(function(data) {
                 $scope.searchFormData = {}; // clear the form so our user is ready to enter another

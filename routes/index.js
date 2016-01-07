@@ -88,7 +88,7 @@ router.get('/api/get/search', function(req, res) {
 //update status
 router.post('/api/post/tweet', function(req, res) {
   twitterN.statuses("update", {
-        status: "dankme"
+        status: "weowww"
       },
       _tempAccessToken,
       _tempAccessSecret,
@@ -100,6 +100,27 @@ router.post('/api/post/tweet', function(req, res) {
         }
       }
   );
+});
+
+router.get("/user-home", function (req, res) {
+
+  twitterN.getTimeline('home_timeline', {count: 12},_tempAccessToken, _tempAccessSecret, function(err, tweets) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: ""}];
+      for(i = 0; i < tweets.length; i++){
+        tweet.push({});
+        tweet[i].tw_id = tweets[i].id;
+        tweet[i].text = tweets[i].text;
+        tweet[i].date = tweets[i].created_at;
+        tweet[i].username = tweets[i].user.name;
+        tweet[i].screenname = tweets[i].user.screen_name;
+      }
+
+      res.json(tweet);
+    }
+  });
 });
 
 router.get("/is-user-auth", function (req, res) {
