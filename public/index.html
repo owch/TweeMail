@@ -47,12 +47,12 @@
     </div><!-- CONTAINER CLOSE -->
   </div><!-- HEADER CLOSE -->
 
-  
+
 <div class="container">
     <div class="headerdos">
       <div class="row">
         <div class="col-sm-2">
-          
+
           <div class="input-group">
             <div class="input-group-btn">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Gmail <span class="caret"></span></button>
@@ -68,11 +68,11 @@
 
       </div><!-- ROW CLOSE -->
     </div> <!-- HEADERDOS CLOSE -->
-  
+
 
     <div class="row">
       <div class="col-sm-2">
-            
+
         <div id="sidebar">
           <div id="compose">
             <button type="button" class="btn btn-danger" ng-click="postTweet()">Compose</button>
@@ -105,25 +105,54 @@
         <!--</div>-->
 
       </div>
-    
+
     </div>  <!-- col-2 -->
 
      <div class="col-sm-9">
 
-        <ul id="emails">
-          <li ng-repeat="tweet in tweets">
-            <div class="checked" data-checked="false" style="background-color: white;"></div>
-            <div class="starred" data-starred="false"><span class="glyphicon glyphicon-star"></div>
-            <div class="from">{{tweet.username}}</div>
-            <div class="subject">@{{tweet.screenname}}</div>
-            <div class="preview">{{tweet.text}}</div>
-          </li>
-        </ul>
-      </div>
+        <!--<ul id="emails">-->
+          <!--<li ng-repeat="tweet in tweets">-->
+            <!--<div class="checked" data-checked="false" style="background-color: white;"></div>-->
+            <!--<div class="starred" data-starred="false"><span class="glyphicon glyphicon-star"></div>-->
+            <!--<div class="from">{{tweet.username}}</div>-->
+            <!--<div class="subject">@{{tweet.screenname}}</div>-->
+            <!--<div class="preview">{{tweet.text}}</div>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</div>-->
 
+         <div class="tab-content">
+             <div class="tab-pane fade in active" id="home">
+                 <div class="list-group">
+                     <a href="#" class="list-group-item" ng-repeat="tweet in tweets">
+                         <div class = "tab-p">
+                             <div class="checkbox">
+                                 <label>
+                                     <input type="checkbox">
+                                 </label>
+                             </div>
+                             <span class="glyphicon glyphicon-star"></span>
+                             <span class="name " style="width: 120px;display: inline-block;">{{tweet.username}}</span>
+                             <span class="">@{{tweet.screenname}}</span>
+                             <span class="text-muted tweet-text" >{{tweet.text}}</span>
+                         </div>
+                     </a>
+                 </div>
+             </div>
+             <div class="tab-pane fade in" id="profile">
+                 <div class="list-group">
+                     <div class="list-group-item">
+                         <span class="text-center">This tab is empty.</span>
+                     </div>
+                 </div>
+             </div>
+             <div class="tab-pane fade in" id="messages">
+                 ...</div>
+             <div class="tab-pane fade in" id="settings">
+                 This tab is empty.</div>
+         </div>
 
-
-     </div> 
+     </div>
   </div> <!-- row -->
        <div id="footer">
         <div id="usage">10GB 70% of 15GB</div>
