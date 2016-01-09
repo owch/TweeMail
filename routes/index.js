@@ -88,7 +88,7 @@ router.get('/api/get/search', function(req, res) {
 //update status
 router.post('/api/post/tweet', function(req, res) {
   twitterN.statuses("update", {
-        status: "weowww"
+        status: req.body.text
       },
       _tempAccessToken,
       _tempAccessSecret,
@@ -96,7 +96,8 @@ router.post('/api/post/tweet', function(req, res) {
         if (err) {
           res.status(500).send(err);
         } else {
-          console.log("success tweet: " +data.text);
+          console.log("success tweet: ");
+          res.send(data.text);
         }
       }
   );
@@ -104,7 +105,7 @@ router.post('/api/post/tweet', function(req, res) {
 
 router.get("/user-home", function (req, res) {
 
-  twitterN.getTimeline('home_timeline', {count: 12},_tempAccessToken, _tempAccessSecret, function(err, tweets) {
+  twitterN.getTimeline('home_timeline', {count: 15},_tempAccessToken, _tempAccessSecret, function(err, tweets) {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -121,6 +122,10 @@ router.get("/user-home", function (req, res) {
       res.json(tweet);
     }
   });
+});
+
+router.get("/get-trends", function (req, res) {
+
 });
 
 router.get("/is-user-auth", function (req, res) {

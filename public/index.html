@@ -36,7 +36,7 @@
 
             <div class="col-sm-1">
                 <div id="loginContainer">
-                    <a href="#" class="button blue" id="sign-in-with-twitter"">Sign in</a>
+                    <a href="#" class="button blue" id="sign-in-with-twitter">Sign in</a>
                 </div>
 
             </div>
@@ -75,15 +75,14 @@
 
         <div id="sidebar">
           <div id="compose">
-            <button type="button" class="btn btn-danger" ng-click="postTweet()">Compose</button>
+            <button type="button" class="btn btn-danger">Compose</button>
           </div>
           <div id="labels">
             <ul id="main-labels" class="nav nav-pills nav-stacked">
               <li id="inbox" role="presentation"><a href="#">Inbox</a></li>
-              <li role="presentation"><a href="#">Starred</a></li>
-              <li role="presentation"><a href="#">Sent mail</a></li>
-              <li role="presentation"><a href="#">Drafts</a></li>
-              <li role="presentation"><a href="#">Spam</a></li>
+              <li role="presentation"><a href="#">Home</a></li>
+              <li role="presentation"><a href="#">Notification</a></li>
+              <li role="presentation"><a href="#">Trends</a></li>
             </ul>
 
             <ul id="personal-labels">
@@ -109,18 +108,6 @@
     </div>  <!-- col-2 -->
 
      <div class="col-sm-9">
-
-        <!--<ul id="emails">-->
-          <!--<li ng-repeat="tweet in tweets">-->
-            <!--<div class="checked" data-checked="false" style="background-color: white;"></div>-->
-            <!--<div class="starred" data-starred="false"><span class="glyphicon glyphicon-star"></div>-->
-            <!--<div class="from">{{tweet.username}}</div>-->
-            <!--<div class="subject">@{{tweet.screenname}}</div>-->
-            <!--<div class="preview">{{tweet.text}}</div>-->
-          <!--</li>-->
-        <!--</ul>-->
-      <!--</div>-->
-
          <div class="tab-content">
              <div class="tab-pane fade in active" id="home">
                  <div class="list-group">
@@ -132,7 +119,7 @@
                                  </label>
                              </div>
                              <span class="glyphicon glyphicon-star"></span>
-                             <span class="name " style="width: 120px;display: inline-block;">{{tweet.username}}</span>
+                             <span class="name tweet-username">{{tweet.username}}</span>
                              <span class="">@{{tweet.screenname}}</span>
                              <span class="text-muted tweet-text" >{{tweet.text}}</span>
                          </div>
@@ -156,26 +143,31 @@
   </div> <!-- row -->
        <div id="footer">
         <div id="usage">10GB 70% of 15GB</div>
-        <div id="brand">My Mail Company</div>
+        <div id="brand">TweeMail</div>
         <div id="terms">Terms & privacy</div>
         <div id="last-activity">Last account activity: 2 minutes ago</div>
       </div>
     </div>
     
     <div id="blank-email" style="display: none" >
-      <div id="blank-close"></div>
-      <form id="new_email">
-        <div><label for="blank-to">To</label><input id="blank-to" name="to" type="text" value=""></div>
-        <div><label for="blank-from">From</label><input id="blank-from" name="from" type="text" value=""></div>
-        <div><label for="blank-subject">Subject</label><input id="blank-subject" name="subject" type="text" value=""></div>
-        <div><textarea id="blank-content" name="content" rows="4" cols="50"></textarea></div>
-        <div id="blank-bottom">
-          <div id="send">send</div>
-          <div id="trash">trash</div>
-      </form>
-    </div>
+            <div class="message-head">
+                <span style="margin-top: 12px; display: inline-block; margin-left: 10px;">New Tweet</span>
+                <a class="closeX" style="float: right !important; display: inline-block; margin-right: 25px; margin-top:12px;" id="closeX" onclick='$("#blank-email").hide();'>&#10006;</a>
+            </div>
+            <div class="">
+                <form accept-charset="UTF-8" action="" method="POST" role="form" class="">
+                    <div class="form-group">
+                        <textarea class="form-control counted" name="message" placeholder="What's happening?" rows="5" style="margin-bottom:10px;" ng-model="tweetFormData.text">
+                        </textarea>
+                    </div>
+                </form>
 
-  </div>
+                <!-- button -->
+                <div id="wrap">
+                    <div class="btn-box btn-gradient btn-pos" style="margin-bottom: 12px; display: inline-block; margin-left: 5px;" ng-click="postTweet()">Send</div>
+                </div>
+            </div>
+    </div>
 </div>
       </div>
 

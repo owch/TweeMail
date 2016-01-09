@@ -12,6 +12,7 @@ $(function() {
 
 function mainController($scope, $http) {
     $scope.searchFormData = {};
+    $scope.tweetFormData = {};
     $scope.currentCity = {text:"Toronto"};
     $scope.testTweet = {text:"12345"};
     //
@@ -58,12 +59,14 @@ function mainController($scope, $http) {
     };
 
     $scope.postTweet = function() {
-        $http.post('/api/post/tweet', $scope.testTweet)
-            .success(function(data) {
 
+        $http.post('/api/post/tweet', $scope.tweetFormData)
+            .success(function(data) {
+                $scope.tweetFormData = {};
             })
             .error(function(data) {
             });
+        $scope.tweetFormData = {};
     };
 
 
