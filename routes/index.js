@@ -70,6 +70,7 @@ router.get('/api/get/search', function(req, res) {
   // post search
   router.post('/api/post/search', function(req, res) {
     console.log(req.body.text);
+    console.log(twitter);
     twitter.get('search/tweets', {q: req.body.text}, function (error, tweets, response) {
       if(error)
       {
