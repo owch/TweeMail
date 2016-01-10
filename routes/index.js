@@ -180,23 +180,30 @@ router.get("/auth/access-token", function(req, res) {
   var requestToken = req.query.oauth_token,
       verifier = req.query.oauth_verifier;
 
-  twitterN.getAccessToken(requestToken, _requestSecret, verifier, function(err, accessToken, accessSecret) {
-    if (err)
-      res.status(500).send(err);
-    else
-    {
-      twitterN.verifyCredentials(accessToken, accessSecret, function(error, user, response) {
-        if (err) {
-          res.status(500).send(err);
-        } else {
-          req.session.profile_image_url = user.profile_image_url_https;
-          req.session.oauth_access_token = accessToken;
-          req.session.oauth_access_token_secret = accessSecret;
-          res.redirect(process.env.TWITTER_HOME);
-        }
-      });
-    }
-  });
+  if(requestToken == undefined)
+  {
+    res.redirect(process.env.TWITTER_HOME);
+  }
+  else
+  {
+    twitterN.getAccessToken(requestToken, _requestSecret, verifier, function(err, accessToken, accessSecret) {
+      if (err)
+        res.status(500).send(err);
+      else
+      {
+        twitterN.verifyCredentials(accessToken, accessSecret, function(error, user, response) {
+          if (err) {
+            res.status(500).send(err);
+          } else {
+            req.session.profile_image_url = user.profile_image_url_https;
+            req.session.oauth_access_token = accessToken;
+            req.session.oauth_access_token_secret = accessSecret;
+            res.redirect(process.env.TWITTER_HOME);
+          }
+        });
+      }
+    });
+  }
 });
 
 
