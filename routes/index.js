@@ -74,12 +74,18 @@ router.get('/api/get/search', function(req, res) {
 
       var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: ""}];
       for(i = 0; i < tweets.statuses.length; i++){
-        tweet.push({});
-        tweet[i].tw_id = tweets.statuses[i].id;
-        tweet[i].text = tweets.statuses[i].text;
-        tweet[i].date = tweets.statuses[i].created_at;
-        tweet[i].username = tweets.statuses[i].user.name;
-        tweet[i].screenname = tweets.statuses[i].user.screen_name;
+        if(error)
+        {
+          res.status(500).send(error);
+        }
+        else {
+          tweet.push({});
+          tweet[i].tw_id = tweets.statuses[i].id;
+          tweet[i].text = tweets.statuses[i].text;
+          tweet[i].date = tweets.statuses[i].created_at;
+          tweet[i].username = tweets.statuses[i].user.name;
+          tweet[i].screenname = tweets.statuses[i].user.screen_name;
+        }
       }
 
       res.json(tweet);
