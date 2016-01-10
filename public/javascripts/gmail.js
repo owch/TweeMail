@@ -1,13 +1,9 @@
 $(document).ready(function () {
 
 	$("#compose").click(function(){ 
-		$("#blank-email").fadeIn();
+		//$("#blank-email").fadeIn();
 	});
 
-
-	$("#trash").click(function(){
-		$("#blank-email").hide();
-	});
 
 	var Myfuncion2= function(){$(this).prop("selected", true)};
 	$(".checked").click(Myfuncion2);

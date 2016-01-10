@@ -5,23 +5,21 @@ var Tweet = require('../models/tweet');
 var TwitterN = require("node-twitter-api");
 var token = require('../models/token');
 
+
 var twitter = new twit({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
   access_token_key: process.env.TWITTER_ACCESS_KEY,
   access_token_secret: process.env.TWITTER_ACCESS_SECRET,
-  callback: "http://127.0.0.1:3000"
 });
 
 var twitterN = new TwitterN({
-  consumerKey: "CpA5oWclxPV3Etj3I9yF7ba9d",
-  consumerSecret: "XdIgLK8qPwX5CK7uMfFtWKNgaaOgKIZCLqBOgEEJ7MrusKOGOj",
+  consumerKey: process.env.TWITTER_CONSUMER_KEY,
+  consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
   callback: "http://127.0.0.1:3000/auth/access-token"
 });
 
 var _requestSecret;
-var _tempAccessToken;
-var _tempAccessSecret;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -85,27 +83,9 @@ router.get('/api/get/search', function(req, res) {
     });
   });
 
-//update status
-router.post('/api/post/tweet', function(req, res) {
-  twitterN.statuses("update", {
-        status: req.body.text
-      },
-      _tempAccessToken,
-      _tempAccessSecret,
-      function(err, data) {
-        if (err) {
-          res.status(500).send(err);
-        } else {
-          console.log("success tweet: ");
-          res.send(data.text);
-        }
-      }
-  );
-});
-
 router.get("/user-home", function (req, res) {
 
-  twitterN.getTimeline('home_timeline', {count: 15},_tempAccessToken, _tempAccessSecret, function(err, tweets) {
+  twitterN.getTimeline('home_timeline', {count: 15},req.session.oauth_access_token, req.session.oauth_access_token_secret, function(err, tweets) {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -124,12 +104,46 @@ router.get("/user-home", function (req, res) {
   });
 });
 
-router.get("/get-trends", function (req, res) {
+//update status
+router.post('/api/post/tweet', function(req, res) {
+  twitterN.statuses("update", {
+        status: req.body.text
+      },
+      req.session.oauth_access_token,
+      req.session.oauth_access_token_secret,
+      function(err, data) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          console.log("success tweet: ");
+          res.send(data.text);
+        }
+      }
+  );
+});
 
+//router.get("/get-trends", function (req, res) {
+//    twitterN.trends('place', {
+//      id: 1
+//    },
+//        _tempAccessToken,
+//        _tempAccessSecret,
+//        function(err, data) {
+//          if (err) {
+//            res.status(500).send(err);
+//          } else {
+//            res.send(data);
+//          }
+//        }
+//    );
+//});
+
+router.get("/user-profile-pic", function (req, res) {
+  res.send(req.session.profile_image_url);
 });
 
 router.get("/is-user-auth", function (req, res) {
-  if(_tempAccessToken == undefined)
+  if(req.session.oauth_access_token == undefined)
   {
     res.send('false');
   }
@@ -159,26 +173,17 @@ router.get("/auth/access-token", function(req, res) {
       res.status(500).send(err);
     else
     {
-      //twitterN.verifyCredentials(accessToken, accessSecret, function(error, user, response) {
-      //  if (err) {
-      //    res.status(500).send(err);
-      //  } else {
-      //    var date = new Date();
-      //
-      //    token.create({
-      //      access_token: accessToken,
-      //      access_secret: accessSecret,
-      //      screen_name: user.screen_name,
-      //      creation: date
-      //    });
-      //
-      //    res.send(user);
-      //  }
-      //});
-      _tempAccessToken = accessToken;
-      _tempAccessSecret = accessSecret;
-      console.log("here");
-      res.redirect("http://127.0.0.1:3000");
+      twitterN.verifyCredentials(accessToken, accessSecret, function(error, user, response) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          req.session.profile_image_url = user.profile_image_url_https;
+          req.session.oauth_access_token = accessToken;
+          req.session.oauth_access_token_secret = accessSecret;
+          console.log("here");
+          res.redirect("http://127.0.0.1:3000");
+        }
+      });
     }
   });
 });

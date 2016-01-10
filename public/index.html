@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/estilo_gmail.css">
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -38,7 +38,9 @@
                 <div id="loginContainer">
                     <a href="#" class="button blue" id="sign-in-with-twitter">Sign in</a>
                 </div>
-
+                <div id="profilePic">
+                    <img ng-src={{image.url}}  id="profile-pic">
+                </div>
             </div>
 
 
@@ -75,7 +77,7 @@
 
         <div id="sidebar">
           <div id="compose">
-            <button type="button" class="btn btn-danger">Compose</button>
+            <button type="button" class="btn btn-danger" ng-click="composeTweet()">Compose</button>
           </div>
           <div id="labels">
             <ul id="main-labels" class="nav nav-pills nav-stacked">

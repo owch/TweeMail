@@ -6622,6 +6622,14 @@ button.close {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
 }
+
+#profile-pic {
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 35px;
+  height: 35px;
+}
+
 /* Style the search button hover state */
 #searchsubmit:hover {
   background:  no-repeat center #357AE8;

@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -12,6 +13,8 @@ var users = require('./routes/users');
 
 
 var app = express();
+app.use(session({secret: 'sshhh'}));
+
 
 mongoose.connect('mongodb://localhost/tweemaildb');
 
