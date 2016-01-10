@@ -70,7 +70,6 @@ router.get('/api/get/search', function(req, res) {
   // post search
   router.post('/api/post/search', function(req, res) {
     console.log(req.body.text);
-    console.log(twitter);
     twitter.get('search/tweets', {q: req.body.text}, function (error, tweets, response) {
       if(error)
       {
@@ -164,17 +163,20 @@ router.get("/is-user-auth", function (req, res) {
 });
 
 router.get("/auth/request-token", function (req, res) {
+	console.log(twitterN.callback);
   twitterN.getRequestToken(function (err, requestToken, requestSecret) {
     if (err)
       res.status(500).send(err);
     else {
       _requestSecret = requestSecret;
+
       res.redirect("https://api.twitter.com/oauth/authenticate?oauth_token=" + requestToken);
     }
   });
 });
 
 router.get("/auth/access-token", function(req, res) {
+
   var requestToken = req.query.oauth_token,
       verifier = req.query.oauth_verifier;
 
@@ -190,8 +192,7 @@ router.get("/auth/access-token", function(req, res) {
           req.session.profile_image_url = user.profile_image_url_https;
           req.session.oauth_access_token = accessToken;
           req.session.oauth_access_token_secret = accessSecret;
-          console.log("here");
-          res.redirect(process.env.TWITTER_HOME);
+          res.redirect("http://104.236.150.151:3000/");
         }
       });
     }
