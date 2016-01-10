@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var twit = require('twitter');
-var Tweet = require('../models/tweet');
 var TwitterN = require("node-twitter-api");
-var token = require('../models/token');
 
 
 var twitter = new twit({
