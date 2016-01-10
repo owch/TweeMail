@@ -192,7 +192,7 @@ router.get("/auth/access-token", function(req, res) {
           req.session.profile_image_url = user.profile_image_url_https;
           req.session.oauth_access_token = accessToken;
           req.session.oauth_access_token_secret = accessSecret;
-          res.redirect("http://104.236.150.151:3000/");
+          res.redirect(process.env.TWITTER_HOME);
         }
       });
     }
