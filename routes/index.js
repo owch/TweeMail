@@ -14,7 +14,7 @@ var twitter = new twit({
 var twitterN = new TwitterN({
   consumerKey: process.env.TWITTER_CONSUMER_KEY,
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-  callback: "http://127.0.0.1:3000/auth/access-token"
+  callback: process.env.TWITTER_HOME + "/auth/access-token"
 });
 
 var _requestSecret;
@@ -191,7 +191,7 @@ router.get("/auth/access-token", function(req, res) {
           req.session.oauth_access_token = accessToken;
           req.session.oauth_access_token_secret = accessSecret;
           console.log("here");
-          res.redirect("http://127.0.0.1:3000");
+          res.redirect(process.env.TWITTER_HOME);
         }
       });
     }
