@@ -71,21 +71,21 @@ router.get('/api/get/search', function(req, res) {
   router.post('/api/post/search', function(req, res) {
     console.log(req.body.text);
     twitter.get('search/tweets', {q: req.body.text}, function (error, tweets, response) {
+      if(error)
+      {
+        res.status(500).send(error);
+      }
+      else {
+        var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: ""}];
+        for(i = 0; i < tweets.statuses.length; i++){
 
-      var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: ""}];
-      for(i = 0; i < tweets.statuses.length; i++){
-        if(error)
-        {
-          res.status(500).send(error);
-        }
-        else {
           tweet.push({});
           tweet[i].tw_id = tweets.statuses[i].id;
           tweet[i].text = tweets.statuses[i].text;
           tweet[i].date = tweets.statuses[i].created_at;
           tweet[i].username = tweets.statuses[i].user.name;
           tweet[i].screenname = tweets.statuses[i].user.screen_name;
-        }
+      }
       }
 
       res.json(tweet);
