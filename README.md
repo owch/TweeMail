@@ -1,4 +1,3 @@
 # TweeMail
 
-[tm.owch.me](tm.owch.me)
-[title](tm.owch.me "TweeMail")
+[tm.owch.me](http://tm.owch.me "TweeMail")
