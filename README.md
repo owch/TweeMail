@@ -1,4 +1,4 @@
 # TweeMail
 
-[Absolute README link](tm.owch.me)
+[tm.owch.me](tm.owch.me)
 
