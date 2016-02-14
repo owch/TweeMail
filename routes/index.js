@@ -131,21 +131,21 @@ router.post('/api/post/tweet', function(req, res) {
   );
 });
 
-//router.get("/get-trends", function (req, res) {
-//    twitterN.trends('place', {
-//      id: 1
-//    },
-//        _tempAccessToken,
-//        _tempAccessSecret,
-//        function(err, data) {
-//          if (err) {
-//            res.status(500).send(err);
-//          } else {
-//            res.send(data);
-//          }
-//        }
-//    );
-//});
+router.get("/get-trends", function (req, res) {
+    twitterN.trends('place', {count: 15},{
+      id: 1
+    },
+        req.session.oauth_access_token,
+        req.session.oauth_access_token_secret,
+        function(err, data) {
+          if (err) {
+            res.status(500).send(err);
+          } else {
+            res.send(data);
+          }
+        }
+    );
+});
 
 router.get("/user-profile-pic", function (req, res) {
   res.send(req.session.profile_image_url);
