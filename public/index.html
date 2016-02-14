@@ -87,11 +87,8 @@
               <li role="presentation"><a href="#">Trends</a></li>
             </ul>
 
-            <ul id="personal-labels">
-              <li>Friends</li>
-              <li>Professional</li>
-              <li>Events</li>
-              <li>Things</li>
+            <ul id="personal-labels" >
+              <li ng-repeat="trend in trends">{{trend.trend_name}}</li>
             </ul>
           </div>
 

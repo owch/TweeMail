@@ -53,6 +53,14 @@ function mainController($scope, $http) {
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
+
+                $http.get('/get-trends')
+                    .success(function(data) {
+                        $scope.trends = data;
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
             }
         })
         .error(function(data) {
