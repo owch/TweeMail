@@ -79,15 +79,15 @@ router.get('/api/get/search', function(req, res) {
         var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: ""}];
         for(i = 0; i < tweets.statuses.length; i++){
 
-          tweet.push({});
           tweet[i].tw_id = tweets.statuses[i].id;
           tweet[i].text = tweets.statuses[i].text;
           tweet[i].date = tweets.statuses[i].created_at;
           tweet[i].username = tweets.statuses[i].user.name;
           tweet[i].screenname = tweets.statuses[i].user.screen_name;
+          tweet.push({});
       }
       }
-
+      tweet.pop();
       res.json(tweet);
     });
   });
@@ -108,6 +108,7 @@ router.get("/user-home", function (req, res) {
         tweet.push({});
       }
 
+      tweet.pop();
       res.json(tweet);
     }
   });
@@ -148,6 +149,7 @@ router.get("/get-trends", function (req, res) {
                 trend[i].trend_name = data[0].trends[i].name;
                 trend.push({});
               }
+              trend.pop();
               res.json(trend);
             }
           }
