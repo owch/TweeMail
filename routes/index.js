@@ -137,8 +137,8 @@ router.get("/get-trends", function (req, res) {
       twitterN.trends('place',{
             id: 1
           },
-          req.session.oauth_access_token,
-          req.session.oauth_access_token_secret,
+          process.env.TWITTER_ACCESS_KEY,
+          process.env.TWITTER_ACCESS_SECRET,
           function(err, data) {
             if (err) {
               res.status(500).send(err);
