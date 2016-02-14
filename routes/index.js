@@ -100,12 +100,12 @@ router.get("/user-home", function (req, res) {
     } else {
       var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: ""}];
       for(i = 0; i < tweets.length; i++){
-        tweet.push({});
         tweet[i].tw_id = tweets[i].id;
         tweet[i].text = tweets[i].text;
         tweet[i].date = tweets[i].created_at;
         tweet[i].username = tweets[i].user.name;
         tweet[i].screenname = tweets[i].user.screen_name;
+        tweet.push({});
       }
 
       res.json(tweet);
@@ -132,19 +132,30 @@ router.post('/api/post/tweet', function(req, res) {
 });
 
 router.get("/get-trends", function (req, res) {
-    twitterN.trends('place', {count: 15},{
-      id: 1
-    },
-        req.session.oauth_access_token,
-        req.session.oauth_access_token_secret,
-        function(err, data) {
-          if (err) {
-            res.status(500).send(err);
-          } else {
-            res.send(data);
+    if(req.session.oauth_access_token != undefined) {
+      twitterN.trends('place',{
+            id: 1
+          },
+          req.session.oauth_access_token,
+          req.session.oauth_access_token_secret,
+          function(err, data) {
+            if (err) {
+              res.status(500).send(err);
+            } else {
+              var trend = [{trend_name: ""}];
+              var numTrend = Math.min(data[0].trends.length, 5);
+              for(i = 0; i < numTrend; i++){
+                trend[i].trend_name = data[0].trends[i].name;
+                trend.push({});
+              }
+              res.json(trend);
+            }
           }
-        }
-    );
+      );
+    }
+  else{
+      res.status(500).send('You must authenticate first');
+    }
 });
 
 router.get("/user-profile-pic", function (req, res) {
