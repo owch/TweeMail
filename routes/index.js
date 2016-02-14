@@ -143,7 +143,7 @@ router.get("/get-trends", function (req, res) {
               res.status(500).send(err);
             } else {
               var trend = [{trend_name: ""}];
-              var numTrend = Math.min(data[0].trends.length, 5);
+              var numTrend = Math.min(data[0].trends.length, 10);
               for(i = 0; i < numTrend; i++){
                 trend[i].trend_name = data[0].trends[i].name;
                 trend.push({});

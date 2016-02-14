@@ -24,7 +24,7 @@ function mainController($scope, $http) {
         .error(function(data) {
             console.log('Error: ' + data);
         });
-    
+
     $http.get('/is-user-auth')
         .success(function(data) {
             if(data == 'false')
