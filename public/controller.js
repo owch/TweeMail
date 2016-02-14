@@ -24,6 +24,8 @@ function mainController($scope, $http) {
             {
                 $('#profile-pic').toggle(false);
                 $('#sign-in-with-twitter').toggle(true);
+                $('#trends-label').toggle(false);
+
 
                 $http.post('/api/post/search', $scope.currentCity)
                     .success(function(data) {
@@ -37,6 +39,7 @@ function mainController($scope, $http) {
             {
                 $('#sign-in-with-twitter').toggle(false);
                 $('#profile-pic').toggle(true);
+                $('#trends-label').toggle(true);
 
                 $http.get('/user-profile-pic')
                     .success(function(data) {
