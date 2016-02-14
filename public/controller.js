@@ -17,14 +17,20 @@ function mainController($scope, $http) {
     $scope.testTweet = {text:"12345"};
     $scope.image = {url:"https://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png"};
     //
-
+    $http.get('/get-trends')
+        .success(function(data) {
+            $scope.trends = data;
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    
     $http.get('/is-user-auth')
         .success(function(data) {
             if(data == 'false')
             {
                 $('#profile-pic').toggle(false);
                 $('#sign-in-with-twitter').toggle(true);
-                $('#trends-label').toggle(false);
 
 
                 $http.post('/api/post/search', $scope.currentCity)
@@ -39,7 +45,6 @@ function mainController($scope, $http) {
             {
                 $('#sign-in-with-twitter').toggle(false);
                 $('#profile-pic').toggle(true);
-                $('#trends-label').toggle(true);
 
                 $http.get('/user-profile-pic')
                     .success(function(data) {
@@ -52,14 +57,6 @@ function mainController($scope, $http) {
                 $http.get('/user-home')
                     .success(function(data) {
                         $scope.tweets = data;
-                    })
-                    .error(function(data) {
-                        console.log('Error: ' + data);
-                    });
-
-                $http.get('/get-trends')
-                    .success(function(data) {
-                        $scope.trends = data;
                     })
                     .error(function(data) {
                         console.log('Error: ' + data);

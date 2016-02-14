@@ -133,7 +133,6 @@ router.post('/api/post/tweet', function(req, res) {
 });
 
 router.get("/get-trends", function (req, res) {
-    if(req.session.oauth_access_token != undefined) {
       twitterN.trends('place',{
             id: 1
           },
@@ -154,10 +153,6 @@ router.get("/get-trends", function (req, res) {
             }
           }
       );
-    }
-  else{
-      res.status(500).send('You must authenticate first');
-    }
 });
 
 router.get("/user-profile-pic", function (req, res) {
