@@ -3006,7 +3006,7 @@ fieldset[disabled] .btn {
 }
 .btn-default {
   color: #333;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.45);
   border-color: #ccc;
 }
 .btn-default:hover,
@@ -3688,7 +3688,7 @@ tbody.collapse.in {
 }
 .input-group {
   position: relative;
-  display: table;
+  display: inline-block;
   border-collapse: separate;
 }
 .input-group[class*="col-"] {

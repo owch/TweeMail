@@ -10,6 +10,18 @@ $(function() {
     });
 });
 
+$(function() {
+    $("#every-dropdown").on("click", function() {
+        $('#home').toggle();
+    });
+});
+
+$(function() {
+    $("#unread-dropdown").on("click", function() {
+        $('#unread-container').toggle();
+    });
+});
+
 function mainController($scope, $http) {
     $scope.searchFormData = {};
     $scope.tweetFormData = {};

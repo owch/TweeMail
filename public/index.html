@@ -13,10 +13,7 @@
   <body ng-controller="mainController">
     
    <div id="header">
-    <div class="container">
-      <div class="email">
-        <div class="row">
-            
+    <div class="container gmail-row" style="height: 61px">
             <div class="col-xs-2">
               <div class="logo"> 
                 <img src="images/googlelogo.png">
@@ -42,36 +39,29 @@
                     <img ng-src={{image.url}}  id="profile-pic">
                 </div>
             </div>
-
-
-        </div><!-- ROW CLOSE -->
-      </div><!-- EMAIL CLOSE -->
     </div><!-- CONTAINER CLOSE -->
   </div><!-- HEADER CLOSE -->
 
+   <div class="headerdos">
+       <div class="row gmail-row" style="height: 55px">
+           <div class="col-xs-2" style="padding-left: 40px">
+               <div class="input-group">
+                   <div class="input-group-btn">
+                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Gmail <span class="caret"></span></button>
+                       <ul class="dropdown-menu" role="menu">
+                           <li><a href="#">Gmail</a></li>
+                           <li><a href="#">Contactos</a></li>
+                           <li><a href="#">Tareas</a></li>
+                       </ul>
+                   </div><!-- /btn-group -->
+               </div><!-- /input-group -->
 
-<div class="container">
-    <div class="headerdos">
-      <div class="row">
-        <div class="col-xs-2">
+           </div>
 
-          <div class="input-group">
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Gmail <span class="caret"></span></button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Gmail</a></li>
-                <li><a href="#">Contactos</a></li>
-                <li><a href="#">Tareas</a></li>
-              </ul>
-            </div><!-- /btn-group -->
-          </div><!-- /input-group -->
+       </div><!-- ROW CLOSE -->
+   </div> <!-- HEADERDOS CLOSE -->
 
-      </div>
-
-      </div><!-- ROW CLOSE -->
-    </div> <!-- HEADERDOS CLOSE -->
-
-
+<div class="container" style="padding-top: 25px">
     <div id="main-container">
       <div class="col-xs-2">
 
@@ -107,7 +97,41 @@
     </div>  <!-- col-2 -->
 
      <div class="col-xs-9" id="tweet-column">
-         <div class="tab-content">
+         <div style="border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-bottom: 0px">
+             <button id="unread-dropdown" type="button" class="mail_btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unread <span class="caret"></span></button>
+         </div>
+
+         <div id="unread-container" style="border-bottom: 1px solid #ddd; padding-top: 5px">
+             <div class="tab-content">
+                 <div id="no-unread" >
+                     Woohoo! You've read all the new tweets.
+                 </div>
+                 <div class="tab-pane fade in active" >
+                     <div class="list-group">
+                         <a href="#" class="list-group-item" ng-repeat="tweet in unread">
+                             <div class = "tab-p">
+                                 <div class="checkbox">
+                                     <label>
+                                         <input type="checkbox">
+                                     </label>
+                                 </div>
+                                 <span class="glyphicon glyphicon-star"></span>
+                                 <span class="name tweet-username">{{tweet.username}}</span>
+                                 <span class="tweet-screenname">@{{tweet.screenname}}</span>
+                                 <span class="text-muted tweet-text" >{{tweet.text}}</span>
+                                 <span class="tweet-date" >{{tweet.date}}</span>
+                             </div>
+                         </a>
+                     </div>
+                 </div>
+            </div>
+         </div>
+
+         <div style="border-bottom: 1px solid #ddd;">
+             <button id="every-dropdown" type="button" class="mail_btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Eveything else <span class="caret"></span></button>
+         </div>
+
+         <div class="tab-content" style="margin-bottom: 20px;">
              <div class="tab-pane fade in active" id="home">
                  <div class="list-group">
                      <a href="#" class="list-group-item" ng-repeat="tweet in tweets">
@@ -139,7 +163,7 @@
                  This tab is empty.</div>
          </div>
 
-     </div>
+
   </div> <!-- row -->
        <div id="footer">
         <div id="brand">TweeMail</div>
@@ -156,7 +180,7 @@
     <div id="blank-email" style="display: none" >
             <div class="message-head">
                 <span style="margin-top: 12px; display: inline-block; margin-left: 10px;">New Tweet</span>
-                <a class="closeX" style="float: right !important; display: inline-block; margin-right: 25px; margin-top:12px;" id="closeX" onclick='$("#blank-email").hide();'>&#10006;</a>
+                <a class="closeX" style="cursor:pointer; float: right !important; display: inline-block; margin-right: 25px; margin-top:12px;" id="closeX" onclick='$("#blank-email").hide();'>&#10006;</a>
             </div>
             <div class="">
                 <form accept-charset="UTF-8" action="" method="POST" role="form" class="">
@@ -168,7 +192,7 @@
 
                 <!-- button -->
                 <div id="wrap">
-                    <div class="btn-box btn-gradient btn-pos" style="margin-bottom: 12px; display: inline-block; margin-left: 5px;" ng-click="postTweet()">Send</div>
+                    <div class="btn-box btn-gradient btn-pos" style="cursor:pointer; margin-bottom: 12px; display: inline-block; margin-left: 5px;" ng-click="postTweet()">Send</div>
                 </div>
             </div>
     </div>

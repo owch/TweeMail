@@ -1,11 +1,18 @@
 .email {
-	height: 70px;
+	height: 55px;
 	width: 100%;
 	/*position: fixed;*/
 }
 
+.gmail-row {
+	border: 1px solid #ddd;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+}
+
 .logo {
-	margin-top: 13px;
+	margin-top: 7px;
 	margin-left: 0px;
 	width: 0px;
 }
@@ -55,7 +62,7 @@
 
 .headerdos {
 	background-color: white;
-	height: 50px;
+	height: 45px;
 	width: 100%;
 }
 
@@ -716,3 +723,32 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 	height: 45px;
 }
 
+.mail_btn {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #333;
+	background-color: rgba(255, 255, 255, 0.45);
+	padding-top: 20px;
+}
+
+#no-unread{
+	padding-top: 6px;
+	text-align: center;
+}
