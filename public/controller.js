@@ -106,13 +106,11 @@ function mainController($scope, $http) {
 
     $scope.postTweet = function() {
         $scope.sendNote = {'visibility': 'visible'};
-        setTimeout(function() {
-            hideSend($scope);
-        }, 650);
 
         $http.post('/api/post/tweet', $scope.tweetFormData)
             .success(function(data) {
                 $scope.tweetFormData = {};
+                $scope.sendNote = {'visibility': 'hidden'};
             })
             .error(function(data) {
                 $scope.tweetFormData = {};
@@ -122,13 +120,11 @@ function mainController($scope, $http) {
     $scope.refreshTweet = function(){
 
         $scope.notification = {'visibility': 'visible'};
-        setTimeout(function() {
-            hideNotification($scope);
-        }, 650);
 
         $http.get('/is-user-auth')
             .success(function(data) {
                 getTweets($scope, $http, data);
+                $scope.notification = {'visibility': 'hidden'};
             })
             .error(function(data) {
                 console.log('Error: ' + data);
