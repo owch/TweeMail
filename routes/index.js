@@ -45,7 +45,7 @@ router.get('/api/stream', function(req, res) {
 // api ---------------------------------------------------------------------
 // get search
 router.get('/api/get/search', function(req, res) {
-  twitter.get('search/tweets', {q: 'toronto'}, function (error, tweets, response) {
+  twitter.get('search/tweets', {count: 20, count: 25}, {q: 'toronto'}, function (error, tweets, response) {
     console.log(tweets.statuses);
     if(error)
     {
@@ -70,7 +70,7 @@ router.get('/api/get/search', function(req, res) {
   // post search
   router.post('/api/post/search', function(req, res) {
     console.log(req.body.text);
-    twitter.get('search/tweets', {q: req.body.text}, function (error, tweets, response) {
+    twitter.get('search/tweets', {q: req.body.text, count: 25}, function (error, tweets, response) {
       if(error)
       {
         res.status(500).send(error);
@@ -94,7 +94,7 @@ router.get('/api/get/search', function(req, res) {
 
 router.get("/user-home", function (req, res) {
 
-  twitterN.getTimeline('home_timeline', {count: 15},req.session.oauth_access_token, req.session.oauth_access_token_secret, function(err, tweets) {
+  twitterN.getTimeline('home_timeline', {count: 25},req.session.oauth_access_token, req.session.oauth_access_token_secret, function(err, tweets) {
     if (err) {
       res.status(500).send(err);
     } else {
