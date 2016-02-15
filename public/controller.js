@@ -22,6 +22,45 @@ $(function() {
     });
 });
 
+function getTweets($scope, $http, data){
+    if(data == 'false')
+    {
+        $('#profile-pic').toggle(false);
+        $('#sign-in-with-twitter').toggle(true);
+
+
+        $http.post('/api/post/search', $scope.currentCity)
+            .success(function(data) {
+                $scope.tweets = data;
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    }
+    else
+    {
+        $('#sign-in-with-twitter').toggle(false);
+        $('#profile-pic').toggle(true);
+
+        $http.get('/user-profile-pic')
+            .success(function(data) {
+                $scope.image = {url:data};
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+
+        $http.get('/user-home')
+            .success(function(data) {
+                $scope.tweets = data;
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    }
+
+}
+
 function mainController($scope, $http) {
     $scope.searchFormData = {};
     $scope.tweetFormData = {};
@@ -39,45 +78,13 @@ function mainController($scope, $http) {
 
     $http.get('/is-user-auth')
         .success(function(data) {
-            if(data == 'false')
-            {
-                $('#profile-pic').toggle(false);
-                $('#sign-in-with-twitter').toggle(true);
-
-
-                $http.post('/api/post/search', $scope.currentCity)
-                    .success(function(data) {
-                        $scope.tweets = data;
-                    })
-                    .error(function(data) {
-                        console.log('Error: ' + data);
-                    });
-            }
-            else
-            {
-                $('#sign-in-with-twitter').toggle(false);
-                $('#profile-pic').toggle(true);
-
-                $http.get('/user-profile-pic')
-                    .success(function(data) {
-                        $scope.image = {url:data};
-                    })
-                    .error(function(data) {
-                        console.log('Error: ' + data);
-                    });
-
-                $http.get('/user-home')
-                    .success(function(data) {
-                        $scope.tweets = data;
-                    })
-                    .error(function(data) {
-                        console.log('Error: ' + data);
-                    });
-            }
+            getTweets($scope, $http, data);
         })
         .error(function(data) {
             console.log('Error: ' + data);
         });
+
+
 
 
     //send request to sever to search for tweet
@@ -100,6 +107,17 @@ function mainController($scope, $http) {
                 $scope.tweetFormData = {};
             });
     };
+
+    $scope.refreshTweet = function(){
+        $http.get('/is-user-auth')
+            .success(function(data) {
+                getTweets($scope, $http, data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+
+    }
 
     $scope.composeTweet = function() {
 
