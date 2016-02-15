@@ -98,10 +98,10 @@
 
      <div class="col-xs-9" id="tweet-column">
          <div style="border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-bottom: 0px">
-             <button id="unread-dropdown" type="button" class="mail_btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unread <span class="caret"></span></button>
+             <button id="unread-dropdown" style="padding-top: 0px;" type="button" class="mail_btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Unread <span class="caret"></span></button>
          </div>
 
-         <div id="unread-container" style="border-bottom: 1px solid #ddd; padding-top: 5px">
+         <div id="unread-container" style="border-bottom: 1px solid #ddd; ">
              <div class="tab-content">
                  <div id="no-unread" >
                      Woohoo! You've read all the new tweets.
@@ -115,7 +115,7 @@
                                          <input type="checkbox">
                                      </label>
                                  </div>
-                                 <span class="glyphicon glyphicon-star"></span>
+                                 <span class="glyphicon glyphicon-star-empty"></span>
                                  <span class="name tweet-username">{{tweet.username}}</span>
                                  <span class="tweet-screenname">@{{tweet.screenname}}</span>
                                  <span class="text-muted tweet-text" >{{tweet.text}}</span>
@@ -141,7 +141,7 @@
                                      <input type="checkbox">
                                  </label>
                              </div>
-                             <span class="glyphicon glyphicon-star"></span>
+                             <span class="glyphicon glyphicon-star-empty"></span>
                              <span class="name tweet-username">{{tweet.username}}</span>
                              <span class="tweet-screenname">@{{tweet.screenname}}</span>
                              <span class="text-muted tweet-text" >{{tweet.text}}</span>
