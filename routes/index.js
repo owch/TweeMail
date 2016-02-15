@@ -57,7 +57,7 @@ router.get('/api/get/search', function(req, res) {
         tweet.push({});
         tweet[i].tw_id = tweets.statuses[i].id;
         tweet[i].text = tweets.statuses[i].text;
-        tweet[i].date = tweets.statuses[i].created_at;
+        tweet[i].date = tweets.statuses[i].created_at.substring(4, 10);
         tweet[i].username = tweets.statuses[i].user.name;
         tweet[i].screenname = tweets.statuses[i].user.screen_name;
       }
@@ -81,7 +81,7 @@ router.get('/api/get/search', function(req, res) {
 
           tweet[i].tw_id = tweets.statuses[i].id;
           tweet[i].text = tweets.statuses[i].text;
-          tweet[i].date = tweets.statuses[i].created_at;
+          tweet[i].date = tweets.statuses[i].created_at.substring(4, 10);
           tweet[i].username = tweets.statuses[i].user.name;
           tweet[i].screenname = tweets.statuses[i].user.screen_name;
           tweet.push({});
@@ -102,7 +102,7 @@ router.get("/user-home", function (req, res) {
       for(i = 0; i < tweets.length; i++){
         tweet[i].tw_id = tweets[i].id;
         tweet[i].text = tweets[i].text;
-        tweet[i].date = tweets[i].created_at;
+        tweet[i].date = tweets[i].created_at.substring(4, 10);
         tweet[i].username = tweets[i].user.name;
         tweet[i].screenname = tweets[i].user.screen_name;
         tweet.push({});

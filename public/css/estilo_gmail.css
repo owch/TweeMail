@@ -633,17 +633,35 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 {
 	font-size: 11px;
 	height: 1.25em;
-	max-width: 490px;
+	width: 540px;
 	display:inline-block;
 	overflow:hidden;
 }
 
 .tweet-username
 {
-	width: 120px;
+	width: 140px;
 	display: inline-block;
 	overflow:hidden;
 	height: 1.2em;
+}
+
+.tweet-screenname
+{
+	width: 140px;
+	display: inline-block;
+	overflow:hidden;
+	height: 1.2em;
+}
+
+.tweet-date
+{
+	width: 50px;
+	display: inline-block;
+	overflow:hidden;
+	height: 1.2em;
+	font-size: 85%;
+	text-align: right;
 }
 
 #wrap{
