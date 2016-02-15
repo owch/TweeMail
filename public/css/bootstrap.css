@@ -5109,10 +5109,12 @@ a.thumbnail.active {
 .list-group-item {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 4.5px 15px;
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid #ddd;
+  border-left: 0px;
+  border-right: 0px;
 }
 .list-group-item:first-child {
   border-top-left-radius: 4px;
