@@ -9,6 +9,7 @@
 	border-top: 0px;
 	border-left: 0px;
 	border-right: 0px;
+	background: white;
 }
 
 .logo {
@@ -49,9 +50,10 @@
 }
 
 #header{
-	background-color: #F1F1F1;
   color: #404040;
   font-size: 14px;
+	position: fixed;
+	z-index: 1;
 }
 
 .user-profile{
@@ -64,6 +66,10 @@
 	background-color: white;
 	height: 45px;
 	width: 100%;
+	/*position: relative;*/
+	/*position: fixed;*/
+	/*z-index : 1;*/
+	/*margin-top: 50px;*/
 }
 
 .btn {
@@ -148,6 +154,7 @@ border-color: none;
 	right: 80px;
 	border: 1px dotted #7B7B7B;
 	display: none;
+	position : fixed
 }
 
 .checked {
@@ -751,4 +758,8 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 #no-unread{
 	padding-top: 6px;
 	text-align: center;
+}
+
+#sidebar{
+	position: fixed;
 }

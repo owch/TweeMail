@@ -29,13 +29,13 @@ function mainController($scope, $http) {
     $scope.testTweet = {text:"12345"};
     $scope.image = {url:"https://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png"};
     //
-    $http.get('/get-trends')
-        .success(function(data) {
-            $scope.trends = data;
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
+    //$http.get('/get-trends')
+    //    .success(function(data) {
+    //        $scope.trends = data;
+    //    })
+    //    .error(function(data) {
+    //        console.log('Error: ' + data);
+    //    });
 
     $http.get('/is-user-auth')
         .success(function(data) {

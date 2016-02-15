@@ -13,20 +13,21 @@
   <body ng-controller="mainController">
     
    <div id="header">
-    <div class="container gmail-row" style="height: 61px">
+    <div class="container" style="height: 61px">
+        <div class="gmail-row">
             <div class="col-xs-2">
-              <div class="logo"> 
-                <img src="images/googlelogo.png">
-              </div>
+                <div class="logo">
+                    <img src="images/googlelogo.png">
+                </div>
             </div>
 
             <div class="col-xs-9 nopadding">
-              <div id="searchContainer">
-                <form>
-                  <input id="searchfield" name="searchfield" type="text" ng-model="searchFormData.text" />
-                  <img src="images/searchicon.png" id="searchsubmit" ng-click="searchTweet()">
-                </form>
-              </div>
+                <div id="searchContainer">
+                    <form>
+                        <input id="searchfield" name="searchfield" type="text" ng-model="searchFormData.text" />
+                        <img src="images/searchicon.png" id="searchsubmit" ng-click="searchTweet()">
+                    </form>
+                </div>
             </div>
 
 
@@ -39,30 +40,32 @@
                     <img ng-src={{image.url}}  id="profile-pic">
                 </div>
             </div>
+        </div>
     </div><!-- CONTAINER CLOSE -->
+
+       <div class="headerdos">
+           <div class="row gmail-row" style="height: 55px">
+               <div class="col-xs-2" style="padding-left: 40px">
+                   <div class="input-group">
+                       <div class="input-group-btn">
+                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Gmail <span class="caret"></span></button>
+                           <ul class="dropdown-menu" role="menu">
+                               <li><a href="#">Gmail</a></li>
+                               <li><a href="#">Contactos</a></li>
+                               <li><a href="#">Tareas</a></li>
+                           </ul>
+                       </div><!-- /btn-group -->
+                   </div><!-- /input-group -->
+
+               </div>
+           </div><!-- ROW CLOSE -->
+       </div> <!-- HEADERDOS CLOSE -->
   </div><!-- HEADER CLOSE -->
 
-   <div class="headerdos">
-       <div class="row gmail-row" style="height: 55px">
-           <div class="col-xs-2" style="padding-left: 40px">
-               <div class="input-group">
-                   <div class="input-group-btn">
-                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Gmail <span class="caret"></span></button>
-                       <ul class="dropdown-menu" role="menu">
-                           <li><a href="#">Gmail</a></li>
-                           <li><a href="#">Contactos</a></li>
-                           <li><a href="#">Tareas</a></li>
-                       </ul>
-                   </div><!-- /btn-group -->
-               </div><!-- /input-group -->
 
-           </div>
 
-       </div><!-- ROW CLOSE -->
-   </div> <!-- HEADERDOS CLOSE -->
-
-<div class="container" style="padding-top: 25px">
-    <div id="main-container">
+<div class="" style="padding-top: 25px; ">
+    <div id="main-container" style="margin-top: 100px">
       <div class="col-xs-2">
 
         <div id="sidebar">
@@ -177,7 +180,7 @@
        <p>View <a href="https://github.com/owch/TweeMail">source</a>.</p>
    </div>
     
-    <div id="blank-email" style="display: none" >
+    <div id="blank-email" >
             <div class="message-head">
                 <span style="margin-top: 12px; display: inline-block; margin-left: 10px;">New Tweet</span>
                 <a class="closeX" style="cursor:pointer; float: right !important; display: inline-block; margin-right: 25px; margin-top:12px;" id="closeX" onclick='$("#blank-email").hide();'>&#10006;</a>

@@ -1563,6 +1563,7 @@ pre code {
 }
 .container {
   padding-right: 15px;
+  background: #F1F1F1;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
