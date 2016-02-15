@@ -788,3 +788,39 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 	background-color: #F1F1F1;
 	border-color: #ccc;
 }
+
+#top-loading-message {
+	width: 100px;
+	height: 100px;
+	background-color: #F1F1F1;
+	position: absolute;
+	bottom: 0px;
+	right: 80px;
+	border: 1px dotted #7B7B7B;
+	display: none;
+	position : fixed
+}
+
+.notification-container {
+	left: 0;
+	top: 0;
+	margin: 0;
+	font-family: arial, sans-serif;
+	font-weight: bold;
+	visibility: hidden;
+	z-index: 8;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+}
+.notification-message {
+	position: relative;
+	display: inline-block;
+	visibility: hidden;
+	font-size: 80%;
+	padding: 6px 10px;
+	background-color: #f9edbe;
+	border: 1px solid #f0c36d;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

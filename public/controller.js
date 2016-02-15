@@ -22,6 +22,10 @@ $(function() {
     });
 });
 
+function hideNotification($scope){
+    $scope.notification = {'visibility': 'hidden'};
+}
+
 function getTweets($scope, $http, data){
     if(data == 'false')
     {
@@ -109,6 +113,12 @@ function mainController($scope, $http) {
     };
 
     $scope.refreshTweet = function(){
+
+        $scope.notification = {'visibility': 'visible'};
+        setTimeout(function() {
+            hideNotification($scope);
+        }, 700);
+
         $http.get('/is-user-auth')
             .success(function(data) {
                 getTweets($scope, $http, data);
