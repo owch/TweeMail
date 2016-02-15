@@ -25,7 +25,9 @@ $(function() {
 function hideNotification($scope){
     $scope.notification = {'visibility': 'hidden'};
 }
-
+function hideSend($scope){
+    $scope.sendNote = {'visibility': 'hidden'};
+}
 function getTweets($scope, $http, data){
     if(data == 'false')
     {
@@ -103,6 +105,11 @@ function mainController($scope, $http) {
     };
 
     $scope.postTweet = function() {
+        $scope.sendNote = {'visibility': 'visible'};
+        setTimeout(function() {
+            hideSend($scope);
+        }, 650);
+
         $http.post('/api/post/tweet', $scope.tweetFormData)
             .success(function(data) {
                 $scope.tweetFormData = {};
@@ -117,7 +124,7 @@ function mainController($scope, $http) {
         $scope.notification = {'visibility': 'visible'};
         setTimeout(function() {
             hideNotification($scope);
-        }, 700);
+        }, 650);
 
         $http.get('/is-user-auth')
             .success(function(data) {
