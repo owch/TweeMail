@@ -122,8 +122,8 @@
                                          <input type="checkbox">
                                      </label>
                                  </div>
-                                 <span ng-if="tweet.favorited == true" class="glyphicon glyphicon-star gold" ng-click="favTweet()"></span>
-                                 <span ng-if="tweet.favorited == false" class="glyphicon glyphicon-star-empty light-gray" ng-click="favTweet()"></span>
+                                 <span ng-if="tweet.favorited == true" class="glyphicon glyphicon-star gold"></span>
+                                 <span ng-if="tweet.favorited == false" class="glyphicon glyphicon-star-empty light-gray"></span>
 
                                  <span class="name tweet-username">{{tweet.username}}</span>
                                  <span class="tweet-screenname">@{{tweet.screenname}}</span>
@@ -150,8 +150,8 @@
                                      <input type="checkbox">
                                  </label>
                              </div>
-                             <span ng-if="tweet.favorited == true" class="glyphicon glyphicon-star gold" ng-click="favTweet()"></span>
-                             <span ng-if="tweet.favorited == false" class="glyphicon glyphicon-star-empty light-gray" ng-click="favTweet()"></span>
+                             <span ng-if="tweet.favorited == true" class="glyphicon glyphicon-star gold" ng-click="favTweet(tweet.tw_id); tweet.favorited = false;"></span>
+                             <span ng-if="tweet.favorited == false" class="glyphicon glyphicon-star-empty light-gray" ng-click="favTweet(tweet.tw_id); tweet.favorited = true;"></span>
 
                              <span class="name tweet-username">{{tweet.username}}</span>
                              <span class="tweet-screenname">@{{tweet.screenname}}</span>

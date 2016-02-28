@@ -73,7 +73,7 @@ function mainController($scope, $http) {
     $scope.currentCity = {text:"Toronto"};
     $scope.testTweet = {text:"12345"};
     $scope.image = {url:"https://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png"};
-    $scope.currentTweetId = {};
+    $scope.currentTweetId = {text:"0"};
     //
     //$http.get('/get-trends')
     //    .success(function(data) {
@@ -150,7 +150,7 @@ function mainController($scope, $http) {
             });
     };
 
-    $scope.favTweet = function() {
+    $scope.favTweet = function(id) {
 
         $http.get('/is-user-auth')
             .success(function(data) {
@@ -159,11 +159,12 @@ function mainController($scope, $http) {
                 }
                 else
                 {
+                    $scope.currentTweetId.text = id;
                     $http.post('/api/post/fav', $scope.currentTweetId)
                         .success(function(data) {
-
                         })
                         .error(function(data) {
+                            console.log('Error: ' + data);
                         });
                 }
             })

@@ -55,7 +55,7 @@ router.get('/api/get/search', function(req, res) {
       var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: ""}];
       for(i = 0; i < tweets.statuses.length; i++){
         tweet.push({});
-        tweet[i].tw_id = tweets.statuses[i].id;
+        tweet[i].tw_id = tweets.statuses[i].id_str;
         tweet[i].text = tweets.statuses[i].text;
         tweet[i].date = tweets.statuses[i].created_at.substring(4, 10);
         tweet[i].username = tweets.statuses[i].user.name;
@@ -79,7 +79,7 @@ router.get('/api/get/search', function(req, res) {
         var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
         for(i = 0; i < tweets.statuses.length; i++){
 
-          tweet[i].tw_id = tweets.statuses[i].id;
+          tweet[i].tw_id = tweets.statuses[i].id_str;
           tweet[i].text = tweets.statuses[i].text;
           tweet[i].date = tweets.statuses[i].created_at.substring(4, 10);
           tweet[i].username = tweets.statuses[i].user.name;
@@ -101,7 +101,7 @@ router.get("/user-home", function (req, res) {
     } else {
       var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
       for(i = 0; i < tweets.length; i++){
-        tweet[i].tw_id = tweets[i].id;
+        tweet[i].tw_id = tweets[i].id_str;
         tweet[i].text = tweets[i].text;
         tweet[i].date = tweets[i].created_at.substring(4, 10);
         tweet[i].username = tweets[i].user.name;
