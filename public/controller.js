@@ -159,7 +159,12 @@ function mainController($scope, $http) {
                 }
                 else
                 {
+                    $http.post('/api/post/fav', $scope.currentTweetId)
+                        .success(function(data) {
 
+                        })
+                        .error(function(data) {
+                        });
                 }
             })
             .error(function(data) {
