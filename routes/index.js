@@ -135,6 +135,25 @@ router.post('/api/post/tweet', function(req, res) {
   );
 });
 
+// post search
+router.post('/api/post/fav', function(req, res) {
+  console.log(req.body.text);
+  twitterN.favorites("create", {
+        id: req.body.text
+      },
+      req.session.oauth_access_token,
+      req.session.oauth_access_token_secret,
+      function(err, data) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          console.log("success favorite: ");
+          res.send(data.text);
+        }
+      }
+  );
+});
+
 router.get("/get-trends", function (req, res) {
       twitterN.trends('place',{
             id: 1

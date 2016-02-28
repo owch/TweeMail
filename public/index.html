@@ -122,8 +122,8 @@
                                          <input type="checkbox">
                                      </label>
                                  </div>
-                                 <span ng-if="tweet.favorited == true" class="glyphicon glyphicon-star gold"></span>
-                                 <span ng-if="tweet.favorited == false" class="glyphicon glyphicon-star-empty light-gray"></span>
+                                 <span ng-if="tweet.favorited == true" class="glyphicon glyphicon-star gold" ng-click="favTweet()"></span>
+                                 <span ng-if="tweet.favorited == false" class="glyphicon glyphicon-star-empty light-gray" ng-click="favTweet()"></span>
 
                                  <span class="name tweet-username">{{tweet.username}}</span>
                                  <span class="tweet-screenname">@{{tweet.screenname}}</span>
@@ -143,7 +143,7 @@
          <div class="tab-content" style="margin-bottom: 20px;">
              <div class="tab-pane fade in active" id="home">
                  <div class="list-group">
-                     <a href="#" class="list-group-item" ng-repeat="tweet in tweets">
+                     <a href="" class="list-group-item" ng-selected="currentTweetId == tweet.tw_id" ng-repeat="tweet in tweets">
                          <div class = "tab-p">
                              <div class="checkbox">
                                  <label>

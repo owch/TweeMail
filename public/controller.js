@@ -73,6 +73,7 @@ function mainController($scope, $http) {
     $scope.currentCity = {text:"Toronto"};
     $scope.testTweet = {text:"12345"};
     $scope.image = {url:"https://abs.twimg.com/sticky/default_profile_images/default_profile_5_normal.png"};
+    $scope.currentTweetId = {};
     //
     //$http.get('/get-trends')
     //    .success(function(data) {
@@ -142,6 +143,23 @@ function mainController($scope, $http) {
                 else
                 {
                     $("#blank-email").fadeIn();
+                }
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
+    $scope.favTweet = function() {
+
+        $http.get('/is-user-auth')
+            .success(function(data) {
+                if(data == 'false') {
+                    window.location.href = "auth/request-token";
+                }
+                else
+                {
+
                 }
             })
             .error(function(data) {
