@@ -156,11 +156,36 @@ function mainController($scope, $http) {
             .success(function(data) {
                 if(data == 'false') {
                     window.location.href = "auth/request-token";
+
                 }
                 else
                 {
                     $scope.currentTweetId.text = id;
                     $http.post('/api/post/fav', $scope.currentTweetId)
+                        .success(function(data) {
+                        })
+                        .error(function(data) {
+                            console.log('Error: ' + data);
+                        });
+                }
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
+    $scope.unfavTweet = function(id) {
+
+        $http.get('/is-user-auth')
+            .success(function(data) {
+                if(data == 'false') {
+                    window.location.href = "auth/request-token";
+
+                }
+                else
+                {
+                    $scope.currentTweetId.text = id;
+                    $http.post('/api/post/unfav', $scope.currentTweetId)
                         .success(function(data) {
                         })
                         .error(function(data) {

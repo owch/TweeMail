@@ -135,7 +135,7 @@ router.post('/api/post/tweet', function(req, res) {
   );
 });
 
-// post search
+// post fav
 router.post('/api/post/fav', function(req, res) {
   console.log(req.body.text);
   twitterN.favorites("create", {
@@ -148,6 +148,25 @@ router.post('/api/post/fav', function(req, res) {
           res.status(500).send(err);
         } else {
           console.log("success favorite: ");
+          res.send(data.text);
+        }
+      }
+  );
+});
+
+// post fav
+router.post('/api/post/unfav', function(req, res) {
+  console.log(req.body.text);
+  twitterN.favorites("destroy", {
+        id: req.body.text
+      },
+      req.session.oauth_access_token,
+      req.session.oauth_access_token_secret,
+      function(err, data) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          console.log("success unfavorite: ");
           res.send(data.text);
         }
       }
