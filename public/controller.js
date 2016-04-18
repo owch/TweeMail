@@ -210,7 +210,7 @@ function mainController($scope, $http) {
 
 
     //send request to sever to get list of favourites
-    $scope.getFavourites = function(id) {
+    $scope.getFavourites = function() {
 
         $http.get('/is-user-auth')
             .success(function(data) {
@@ -219,9 +219,8 @@ function mainController($scope, $http) {
                 }
                 else
                 {
-                    $http.post('/get/favslist', id)
+                    $http.get('/get/favslist')
                         .success(function(data) {
-                            $scope.searchFormData = {}; // clear the form so our user is ready to enter another
                             $scope.tweets = data;
                         })
                         .error(function(data) {

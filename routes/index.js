@@ -43,22 +43,22 @@ router.get('/api/stream', function(req, res) {
 });
 
 //update status
-router.post('/get/favslist', function(req, res) {
-  twitter.get('favorites/list', {user_id: req.body.text, count: 25}, function (error, tweets, res) {
+router.get('/get/favslist', function(req, res) {
+  twitter.get('favorites/list', {user_id: req.session.userid, count: 25}, function (error, tweets, response) {
         if (error) {
           res.status(500).send(error);
         } else {
           console.log("get favourite tweets: ");
 
           var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
-          for(i = 0; i < tweets.statuses.length; i++) {
+          for(i = 0; i < tweets.length; i++) {
 
-            tweet[i].tw_id = tweets.statuses[i].id_str;
-            tweet[i].text = tweets.statuses[i].text;
-            tweet[i].date = tweets.statuses[i].created_at.substring(4, 10);
-            tweet[i].username = tweets.statuses[i].user.name;
-            tweet[i].screenname = tweets.statuses[i].user.screen_name;
-            tweet[i].favorited = tweets.statuses[i].favorited;
+            tweet[i].tw_id = tweets[i].id_str;
+            tweet[i].text = tweets[i].text;
+            tweet[i].date = tweets[i].created_at.substring(4, 10);
+            tweet[i].username = tweets[i].user.name;
+            tweet[i].screenname = tweets[i].user.screen_name;
+            tweet[i].favorited = tweets[i].favorited;
             tweet.push({});
           }
           tweet.pop();
@@ -227,6 +227,18 @@ router.get("/user-profile-pic", function (req, res) {
   res.send(req.session.profile_image_url);
 });
 
+router.get("/user-id", function (req, res) {
+  res.send(req.session.userid);
+});
+
+router.get("/user-display-name", function (req, res) {
+  res.send(req.session.displayname);
+});
+
+router.get("/user-screen-name", function (req, res) {
+  res.send(req.session.screenname);
+});
+
 router.get("/is-user-auth", function (req, res) {
   if(req.session.oauth_access_token == undefined)
   {
@@ -272,6 +284,9 @@ router.get("/auth/access-token", function(req, res) {
             res.status(500).send(err);
           } else {
             req.session.profile_image_url = user.profile_image_url_https;
+            req.session.displayname = user.name;
+            req.session.screenname = user.screen_name;
+            req.session.userid = user.id;
             req.session.oauth_access_token = accessToken;
             req.session.oauth_access_token_secret = accessSecret;
             res.redirect(process.env.TWITTER_HOME);
