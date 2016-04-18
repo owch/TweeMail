@@ -92,6 +92,16 @@ function mainController($scope, $http) {
         });
 
 
+    $scope.getHome = function() {
+        $http.get('/is-user-auth')
+            .success(function(data) {
+                getTweets($scope, $http, data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
 
 
     //send request to sever to search for tweet
@@ -190,6 +200,31 @@ function mainController($scope, $http) {
                         })
                         .error(function(data) {
                             console.log('Error: ' + data);
+                        });
+                }
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
+
+    //send request to sever to get list of favourites
+    $scope.getFavourites = function(id) {
+
+        $http.get('/is-user-auth')
+            .success(function(data) {
+                if(data == 'false') {
+                    window.location.href = "auth/request-token";
+                }
+                else
+                {
+                    $http.post('/get/favslist', id)
+                        .success(function(data) {
+                            $scope.searchFormData = {}; // clear the form so our user is ready to enter another
+                            $scope.tweets = data;
+                        })
+                        .error(function(data) {
                         });
                 }
             })

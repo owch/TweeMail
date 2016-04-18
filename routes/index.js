@@ -42,6 +42,33 @@ router.get('/api/stream', function(req, res) {
   });
 });
 
+//update status
+router.post('/get/favslist', function(req, res) {
+  twitter.get('favorites/list', {user_id: req.body.text, count: 25}, function (error, tweets, res) {
+        if (error) {
+          res.status(500).send(error);
+        } else {
+          console.log("get favourite tweets: ");
+
+          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+          for(i = 0; i < tweets.statuses.length; i++) {
+
+            tweet[i].tw_id = tweets.statuses[i].id_str;
+            tweet[i].text = tweets.statuses[i].text;
+            tweet[i].date = tweets.statuses[i].created_at.substring(4, 10);
+            tweet[i].username = tweets.statuses[i].user.name;
+            tweet[i].screenname = tweets.statuses[i].user.screen_name;
+            tweet[i].favorited = tweets.statuses[i].favorited;
+            tweet.push({});
+          }
+          tweet.pop();
+          res.json(tweet);
+        }
+      }
+  );
+});
+
+
 // api ---------------------------------------------------------------------
 // get search
 router.get('/api/get/search', function(req, res) {
