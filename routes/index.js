@@ -58,7 +58,7 @@ router.get('/get/favslist', function(req, res) {
             tweet[i].date = tweets[i].created_at.substring(4, 10);
             tweet[i].username = tweets[i].user.name;
             tweet[i].screenname = tweets[i].user.screen_name;
-            tweet[i].favorited = tweets[i].favorited;
+            tweet[i].favorited = true;
             tweet.push({});
           }
           tweet.pop();
@@ -87,6 +87,7 @@ router.get('/api/get/search', function(req, res) {
         tweet[i].date = tweets.statuses[i].created_at.substring(4, 10);
         tweet[i].username = tweets.statuses[i].user.name;
         tweet[i].screenname = tweets.statuses[i].user.screen_name;
+        tweet[i].favorited = tweets.statuses[i].favorited;
       }
 
       res.json(tweet);
