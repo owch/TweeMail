@@ -24,7 +24,7 @@
 
             <div class="col-xs-9 nopadding">
                 <div id="searchContainer">
-                    <form>
+                    <form ng-submit="searchTweet()">
                         <input id="searchfield" name="searchfield" type="text" ng-model="searchFormData.text" />
                         <img src="images/searchicon.png" id="searchsubmit" ng-click="searchTweet()">
                     </form>
