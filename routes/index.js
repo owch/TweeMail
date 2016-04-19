@@ -42,7 +42,7 @@ router.get('/api/stream', function(req, res) {
   });
 });
 
-//update status
+//get favourite list
 router.get('/get/favslist', function(req, res) {
   twitter.get('favorites/list', {user_id: req.session.userid, count: 25}, function (error, tweets, response) {
         if (error) {
@@ -68,7 +68,7 @@ router.get('/get/favslist', function(req, res) {
   );
 });
 
-//update status
+//get followers
 router.get('/get/followers', function(req, res) {
   twitter.get('followers/list', {user_id: req.session.userid, count: 25}, function (error, tweets, response) {
         if (error) {
@@ -80,6 +80,31 @@ router.get('/get/followers', function(req, res) {
           for(i = 0; i < tweets.users.length; i++) {
             tweet[i].username = tweets.users[i].name;
             tweet[i].screenname = tweets.users[i].screen_name;
+            tweet.push({});
+          }
+          tweet.pop();
+          res.json(tweet);
+        }
+      }
+  );
+});
+
+//get retweets of me
+router.get('/get/retweetsme', function(req, res) {
+  twitter.get('statuses/retweets_of_me', {count: 25}, function (error, tweets, response) {
+        if (error) {
+          res.status(500).send(error);
+        } else {
+          console.log("get retweets of me: ");
+
+          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+          for(i = 0; i < tweets.length; i++) {
+            tweet[i].tw_id = tweets[i].id_str;
+            tweet[i].text = tweets[i].text;
+            tweet[i].date = tweets[i].created_at.substring(4, 10);
+            tweet[i].username = tweets[i].user.name;
+            tweet[i].screenname = tweets[i].user.screen_name;
+            tweet[i].favorited = true;
             tweet.push({});
           }
           tweet.pop();

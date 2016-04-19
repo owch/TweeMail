@@ -256,4 +256,28 @@ function mainController($scope, $http) {
             });
     };
 
+    //send request to sever to get retweets of current user
+    $scope.getRetweetsme = function() {
+
+        $http.get('/is-user-auth')
+            .success(function(data) {
+                if(data == 'false') {
+                    window.location.href = "auth/request-token";
+                }
+                else
+                {
+                    $http.get('/get/retweetsme')
+                        .success(function(data) {
+                            $scope.tweets = data;
+                        })
+                        .error(function(data) {
+                        });
+                }
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
+
 }
