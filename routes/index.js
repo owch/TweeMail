@@ -89,11 +89,32 @@ router.get('/get/followers', function(req, res) {
   );
 });
 
-//get retweets of me
-router.get('/get/retweetsme', function(req, res) {
-  twitter.get('statuses/retweets_of_me', {count: 25}, function (error, tweets, response) {
+//get my retweets
+router.get('/get/myretweets', function(req, res) {
+  twitter.get('statuses/retweets', {user_id: req.session.userid, count: 25}, function (error, tweets, response) {
         if (error) {
           res.status(500).send(error);
+        } else {
+          console.log("get followers: ");
+
+          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+          for(i = 0; i < tweets.users.length; i++) {
+            tweet[i].username = tweets.users[i].name;
+            tweet[i].screenname = tweets.users[i].screen_name;
+            tweet.push({});
+          }
+          tweet.pop();
+          res.json(tweet);
+        }
+      }
+  );
+});
+
+//get retweets of me
+router.get('/get/retweetsme', function(req, res) {
+  twitterN.getTimeline('retweets_of_me', {count: 25},req.session.oauth_access_token, req.session.oauth_access_token_secret, function(err, tweets) {
+        if (err) {
+          res.status(500).send(err);
         } else {
           console.log("get retweets of me: ");
 
