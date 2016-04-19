@@ -68,6 +68,26 @@ router.get('/get/favslist', function(req, res) {
   );
 });
 
+//update status
+router.get('/get/followers', function(req, res) {
+  twitter.get('followers/list', {user_id: req.session.userid, count: 25}, function (error, tweets, response) {
+        if (error) {
+          res.status(500).send(error);
+        } else {
+          console.log("get followers: ");
+
+          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+          for(i = 0; i < tweets.users.length; i++) {
+            tweet[i].username = tweets.users[i].name;
+            tweet[i].screenname = tweets.users[i].screen_name;
+            tweet.push({});
+          }
+          tweet.pop();
+          res.json(tweet);
+        }
+      }
+  );
+});
 
 // api ---------------------------------------------------------------------
 // get search

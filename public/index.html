@@ -35,7 +35,7 @@
 
             <div class="col-xs-1">
                 <div id="loginContainer">
-                    <a href="#" class="button blue" id="sign-in-with-twitter">Sign in</a>
+                    <a href="" class="button blue" id="sign-in-with-twitter">Sign in</a>
                 </div>
                 <div id="profilePic">
                     <img ng-src={{image.url}}  id="profile-pic">
@@ -51,9 +51,9 @@
                        <div class="input-group-btn">
                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Gmail <span class="caret"></span></button>
                            <ul class="dropdown-menu" role="menu">
-                               <li><a href="#">Gmail</a></li>
-                               <li><a href="#">Contactos</a></li>
-                               <li><a href="#">Tareas</a></li>
+                               <li><a href="">Gmail</a></li>
+                               <li><a href="">Contactos</a></li>
+                               <li><a href="">Tareas</a></li>
                            </ul>
                        </div><!-- /btn-group -->
                    </div><!-- /input-group -->
@@ -78,11 +78,11 @@
           </div>
           <div id="labels">
             <ul id="main-labels" class="nav nav-pills nav-stacked">
-              <li id="inbox" role="presentation" ng-click="getHome()"><a href="#">Home</a></li>
-              <li role="presentation" ng-click="getFavourites()"> <a href="#">Favourites</a></li>
-              <li role="presentation"><a href="#">Followers</a></li>
-              <li role="presentation"><a href="#">Messages</a></li>
-              <li role="presentation" id="trends-label"><a href="#">Trends</a></li>
+              <li id="inbox" role="presentation" ng-click="getHome()"><a href="">Home</a></li>
+              <li role="presentation" ng-click="getFavourites()"> <a href="">Favourites</a></li>
+              <li role="presentation"><a href="">Retweets</a></li>
+              <li role="presentation" ng-click="getFollowers()"><a href="">Followers</a></li>
+              <li role="presentation" id="trends-label"><a href="">Trends</a></li>
             </ul>
 
             <ul id="personal-labels" >
@@ -116,7 +116,7 @@
                  </div>
                  <div class="tab-pane fade in active" >
                      <div class="list-group">
-                         <a href="#" class="list-group-item" ng-repeat="tweet in unread">
+                         <a href="" class="list-group-item" ng-repeat="tweet in unread">
                              <div class = "tab-p">
                                  <div class="checkbox">
                                      <label>

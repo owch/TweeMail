@@ -232,4 +232,28 @@ function mainController($scope, $http) {
             });
     };
 
+
+    //send request to sever to get list of followers
+    $scope.getFollowers = function() {
+
+        $http.get('/is-user-auth')
+            .success(function(data) {
+                if(data == 'false') {
+                    window.location.href = "auth/request-token";
+                }
+                else
+                {
+                    $http.get('/get/followers')
+                        .success(function(data) {
+                            $scope.tweets = data;
+                        })
+                        .error(function(data) {
+                        });
+                }
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
 }
