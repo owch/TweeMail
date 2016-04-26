@@ -647,14 +647,14 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 {
 	font-size: 11px;
 	height: 1.25em;
-	width: 540px;
+	width: 530px;
 	display:inline-block;
 	overflow:hidden;
 }
 
 .tweet-username
 {
-	width: 140px;
+	width: 130px;
 	display: inline-block;
 	overflow:hidden;
 	height: 1.2em;
@@ -662,7 +662,7 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 
 .tweet-screenname
 {
-	width: 140px;
+	width: 130px;
 	display: inline-block;
 	overflow:hidden;
 	height: 1.2em;
