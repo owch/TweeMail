@@ -50,7 +50,7 @@ router.get('/get/favslist', function(req, res) {
         } else {
           console.log("get favourite tweets: ");
 
-          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: "", retweeted: ""}];
           for(i = 0; i < tweets.length; i++) {
 
             tweet[i].tw_id = tweets[i].id_str;
@@ -76,7 +76,7 @@ router.get('/get/followers', function(req, res) {
         } else {
           console.log("get followers: ");
 
-          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: "", retweeted: ""}];
           for(i = 0; i < tweets.users.length; i++) {
             tweet[i].username = tweets.users[i].name;
             tweet[i].screenname = tweets.users[i].screen_name;
@@ -116,7 +116,7 @@ router.get('/get/myretweets', function(req, res) {
         } else {
           console.log("get followers: ");
 
-          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: "", retweeted: ""}];
           for(i = 0; i < tweets.users.length; i++) {
             tweet[i].username = tweets.users[i].name;
             tweet[i].screenname = tweets.users[i].screen_name;
@@ -137,7 +137,7 @@ router.get('/get/retweetsme', function(req, res) {
         } else {
           console.log("get retweets of me: ");
 
-          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+          var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: "", retweeted: ""}];
           for(i = 0; i < tweets.length; i++) {
             tweet[i].tw_id = tweets[i].id_str;
             tweet[i].text = tweets[i].text;
@@ -145,6 +145,7 @@ router.get('/get/retweetsme', function(req, res) {
             tweet[i].username = tweets[i].user.name;
             tweet[i].screenname = tweets[i].user.screen_name;
             tweet[i].favorited = true;
+            tweet[i].retweeted = true;
             tweet.push({});
           }
           tweet.pop();
@@ -164,7 +165,7 @@ router.get('/api/get/search', function(req, res) {
       res.status(500).send(error);
     }
     else{
-      var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: ""}];
+      var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: "", retweeted: ""}];
       for(i = 0; i < tweets.statuses.length; i++){
         tweet.push({});
         tweet[i].tw_id = tweets.statuses[i].id_str;
@@ -173,6 +174,7 @@ router.get('/api/get/search', function(req, res) {
         tweet[i].username = tweets.statuses[i].user.name;
         tweet[i].screenname = tweets.statuses[i].user.screen_name;
         tweet[i].favorited = tweets.statuses[i].favorited;
+        tweet[i].retweeted = tweets.statuses[i].retweeted;
       }
 
       res.json(tweet);
@@ -189,7 +191,7 @@ router.get('/api/get/search', function(req, res) {
         res.status(500).send(error);
       }
       else {
-        var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+        var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: "", retweeted: ""}];
         for(i = 0; i < tweets.statuses.length; i++){
 
           tweet[i].tw_id = tweets.statuses[i].id_str;
@@ -198,6 +200,7 @@ router.get('/api/get/search', function(req, res) {
           tweet[i].username = tweets.statuses[i].user.name;
           tweet[i].screenname = tweets.statuses[i].user.screen_name;
           tweet[i].favorited = tweets.statuses[i].favorited;
+          tweet[i].retweeted = tweets.statuses[i].retweeted;
           tweet.push({});
       }
       }
@@ -212,7 +215,7 @@ router.get("/user-home", function (req, res) {
     if (err) {
       res.status(500).send(err);
     } else {
-      var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: ""}];
+      var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: "", retweeted: ""}];
       for(i = 0; i < tweets.length; i++){
         tweet[i].tw_id = tweets[i].id_str;
         tweet[i].text = tweets[i].text;
@@ -220,6 +223,7 @@ router.get("/user-home", function (req, res) {
         tweet[i].username = tweets[i].user.name;
         tweet[i].screenname = tweets[i].user.screen_name;
         tweet[i].favorited = tweets[i].favorited;
+        tweet[i].retweeted = tweets[i].retweeted;
         //console.log(tweet[i].favorited);
         tweet.push({});
       }
