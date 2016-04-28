@@ -108,6 +108,44 @@ router.post('/api/post/retweet', function(req, res) {
   );
 });
 
+//post unretweet
+router.post('/api/post/unretweet', function(req, res) {
+  console.log(req.body.text);
+  twitterN.statuses("unretweet", {
+        id: req.body.text
+      },
+      req.session.oauth_access_token,
+      req.session.oauth_access_token_secret,
+      function(err, data) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          console.log("success unretweet: ");
+          res.send(data.text);
+        }
+      }
+  );
+});
+
+//post destroy tweet
+router.post('/api/post/destroy', function(req, res) {
+  console.log(req.body.text);
+  twitterN.statuses("destroy", {
+        id: req.body.text
+      },
+      req.session.oauth_access_token,
+      req.session.oauth_access_token_secret,
+      function(err, data) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          console.log("success unretweet: ");
+          res.send(data.text);
+        }
+      }
+  );
+});
+
 //get my retweets
 router.get('/get/myretweets', function(req, res) {
   twitter.get('statuses/retweets', {user_id: req.session.userid, count: 25}, function (error, tweets, response) {
@@ -215,7 +253,7 @@ router.get("/user-home", function (req, res) {
     if (err) {
       res.status(500).send(err);
     } else {
-      var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: "", retweeted: ""}];
+      var tweet = [{tw_id: "", text: "", date: "", username: "", screenname: "", favorited: "", retweeted: "", retweet_id: ""}];
       for(i = 0; i < tweets.length; i++){
         tweet[i].tw_id = tweets[i].id_str;
         tweet[i].text = tweets[i].text;

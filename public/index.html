@@ -153,6 +153,7 @@
                              </div>
                              <span ng-if="tweet.favorited == true" class="glyphicon glyphicon-star gold" ng-click="unfavTweet(tweet.tw_id); tweet.favorited = false;"></span>
                              <span ng-if="tweet.favorited == false" class="glyphicon glyphicon-star-empty light-gray" ng-click="favTweet(tweet.tw_id); tweet.favorited = true;"></span>
+                             <span ng-if="tweet.retweeted == true" class="glyphicon glyphicon-refresh gold"></span>
                              <span ng-if="tweet.retweeted == false" class="glyphicon glyphicon-refresh light-gray" ng-click="reTweet(tweet.tw_id); tweet.retweeted = true;"></span>
                              <span class="name tweet-username">{{tweet.username}}</span>
                              <span class="tweet-screenname">@{{tweet.screenname}}</span>
