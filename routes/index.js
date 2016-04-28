@@ -89,6 +89,25 @@ router.get('/get/followers', function(req, res) {
   );
 });
 
+//post retweet
+router.post('/api/post/retweet', function(req, res) {
+  console.log(req.body.text);
+  twitterN.statuses("retweet", {
+        id: req.body.text
+      },
+      req.session.oauth_access_token,
+      req.session.oauth_access_token_secret,
+      function(err, data) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          console.log("success retweet: ");
+          res.send(data.text);
+        }
+      }
+  );
+});
+
 //get my retweets
 router.get('/get/myretweets', function(req, res) {
   twitter.get('statuses/retweets', {user_id: req.session.userid, count: 25}, function (error, tweets, response) {
