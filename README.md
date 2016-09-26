@@ -40,6 +40,6 @@ You can view the list of your favourited Tweets by clicking "favourite" in the l
 You can also retweet and unretweet by clicking the "retweet" icon beside the mail.
 You can view the list of you retweets by clicking the "retweet" in the left panel.
 
-![Imgur](http://i.imgur.com/BVkJrTK.png)
+![Imgur](http://i.imgur.com/QKDDkCs.png)
 
 
