@@ -9,7 +9,7 @@ Link to the page: [tm.owch.me](http://tm.owch.me "TweeMail")
 ### Search Tweets
 You can search for Tweets using the search bar at the top. The result will be displayed in the "Everything else" section
 
-![Search Tweets](http://imgur.com/a/Tcii7)
+![Alt text](http://imgur.com/a/Tcii7 "Search Image")
 
 **The following features require authentication through OAuth**
 
