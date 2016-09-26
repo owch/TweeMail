@@ -112,24 +112,18 @@
          <div id="unread-container" style="border-bottom: 1px solid #ddd; ">
              <div class="tab-content">
                  <div id="no-unread" >
-                     Woohoo! You've read all the new tweets.
+                     Check out <a href="https://github.com/owch/TweeMail#tweemail">github.com/owch</a> for instructions on how to use the different features
                  </div>
                  <div class="tab-pane fade in active" >
                      <div class="list-group">
                          <a href="" class="list-group-item" ng-repeat="tweet in unread">
                              <div class = "tab-p">
                                  <div class="checkbox">
-                                     <label>
+                                        <label>
                                          <input type="checkbox">
                                      </label>
                                  </div>
                                  <span ng-if="tweet.favorited == true" class="glyphicon glyphicon-star gold"></span>
-                                 <span ng-if="tweet.favorited == false" class="glyphicon glyphicon-star-empty light-gray"></span>
-
-                                 <span class="name tweet-username">{{tweet.username}}</span>
-                                 <span class="tweet-screenname">@{{tweet.screenname}}</span>
-                                 <span class="text-muted tweet-text" >{{tweet.text}}</span>
-                                 <span class="tweet-date" >{{tweet.date}}</span>
                              </div>
                          </a>
                      </div>
