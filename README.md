@@ -14,31 +14,31 @@ You can search for Tweets using the search bar at the top. The result will be di
 ### Authentication
 The following features require OAuth authentication. 
 
-This can be initiated by clicking the "sign in" button on the top right.
+This can be initiated by clicking the **sign in** button on the top right.
 
 ![Imgur](http://i.imgur.com/4YMu6kz.png)
 
 ### Post Tweets
-You can post Tweets by clicking the "Compose" button and using the window in the bottom right.
+You can post Tweets by clicking the **Compose** button and using the window in the bottom right.
 
 ![Imgur](http://i.imgur.com/92R9KtV.png)
 
 ### Home timeline
 
-When you are logged in. You can view the home page feed by clicking "home" in the left panel.
+When you are logged in. You can view the home page feed by clicking **home** in the left panel.
 
 ![Imgur](http://i.imgur.com/dMldrAX.png)
 
 ### Favourite
 You can favourite and unfavourite tweet by clicking the star icon beside the mail.
-You can view the list of your favourited Tweets by clicking "favourite" in the left panel.
+You can view the list of your favourited Tweets by clicking **favourite** in the left panel.
 
 ![Imgur](http://i.imgur.com/BVkJrTK.png)
 
 ### Retweet
 
-You can also retweet and unretweet by clicking the "retweet" icon beside the mail.
-You can view the list of you retweets by clicking the "retweet" in the left panel.
+You can also retweet and unretweet by clicking the **retweet** icon beside the mail.
+You can view the list of you retweets by clicking the **retweet** in the left panel.
 
 ![Imgur](http://i.imgur.com/QKDDkCs.png)
 
